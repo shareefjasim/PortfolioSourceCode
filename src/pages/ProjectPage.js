@@ -1,14 +1,29 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import '../App.css';
+
 
 function ProjectPage() {
-  // Extract the project ID from the URL
-  const { id } = useParams();
-
   return (
-    <div>
-      {/* Display the details of the project with ID = id */}
-      {/* ... */}
+    <div className="project-page">
+      <header className="project-header">
+        <h1 className="project-title">Project Name - Year</h1>
+        {/* Additional project info can be added here */}
+      </header>
+
+      <section className="project-description-section">
+        <img src="path_to_main_image.jpg" alt="Main Project" />
+        <p className="project-description">Brief description of the project...</p>
+        {/* Links or technical info can be added here */}
+      </section>
+
+      <section className="project-media-section">
+        {/* Images, models, gifs, videos related to the project */}
+        <img src="path_to_image.jpg" alt="Project Detail" />
+        <p className="project-media-title">Title for the media (if needed)</p>
+        <p>Text related to the media...</p>
+      </section>
+
+      {/* Additional sections can be added as needed */}
     </div>
   );
 }

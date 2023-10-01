@@ -48,3 +48,121 @@
   transform: translate(-50%, -50%); /* This centers the cursor to the mouse position */
   z-index: 9999; /* This ensures the cursor is on top of other elements */
 }
+
+
+
+/* Home Page Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.intro {
+  text-align: center;
+  margin-top: 100px;
+}
+
+/* Project Page Styles */
+.project-header {
+  padding: 20px 40px;
+  background-color: #f5f5f5;
+}
+
+.project-description-section {
+  padding: 40px;
+}
+
+.project-media-section {
+  padding: 40px;
+}
+
+
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333; /* General text color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Futura', sans-serif;
+  margin-top: 0;
+}
+
+/* Header Styles */
+.logo {
+  font-size: 36px;
+  font-weight: bold;
+  color: #000; /* Logo color */
+}
+
+.menu-item {
+  font-size: 18px;
+  font-weight: 500; /* Semi-bold for menu items */
+  color: #555; /* Menu item color */
+}
+
+/* Home Page Styles */
+.intro-name {
+  font-size: 48px;
+  font-weight: bold;
+  color: #222; /* Intro name color */
+}
+
+.intro-description {
+  font-size: 24px;
+  font-weight: 300; /* Lighter weight for description */
+  color: #777; /* Description color */
+}
+
+.work-section-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #444; /* Work section title color */
+}
+
+.project-domain {
+  font-size: 20px;
+  font-weight: 500; /* Semi-bold for project domain titles */
+  color: #666; /* Project domain color */
+}
+
+.about-section {
+  font-size: 18px;
+  color: #555; /* About section text color */
+}
+
+/* Project Page Styles */
+.project-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: #222; /* Project title color */
+}
+
+.project-info {
+  font-size: 18px;
+  font-weight: 300; /* Lighter weight for project info */
+  color: #777; /* Project info color */
+}
+
+.project-description {
+  font-size: 20px;
+  color: #555; /* Project description color */
+}
+
+.project-media-title {
+  font-size: 24px;
+  font-weight: 500; /* Semi-bold for media titles */
+  color: #666; /* Media title color */
+}
+
+.project-text {
+  font-size: 18px;
+  color: #555; /* General project text color */
+}
+
+/* Additional styles can be added as needed */

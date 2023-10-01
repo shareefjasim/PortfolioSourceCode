@@ -20,8 +20,8 @@ const Card = ({ children, style, targetUrl }) => {
       const maxDistance = Math.max(verticalDis, horizontalDis);
 
       // if (maxDistance - (cardRect.width / 2) <= 50) {
-        const rotateX = -(e.clientY - centerY) / 50;
-        const rotateY = (e.clientX - centerX) / 50;
+        const rotateX = -(e.clientY - centerY) / 250;
+        const rotateY = (e.clientX - centerX) / 250;
 
         gsap.to(card, {
           duration: 1,
@@ -71,10 +71,10 @@ const Card = ({ children, style, targetUrl }) => {
     <div ref={cardRef}
       className="card-element"
       style={{
-        border: '0px solid #e0e0e0',
+        border: '1px solid #e0e0e0',
         borderRadius: '0px',
         padding: '0px',
-        boxShadow: '0px 0px 100px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0px 0px 100px rgba(0, 0, 0, 0)',
         ...style
       }}>
       {children}
