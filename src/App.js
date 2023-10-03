@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProjectPage from "./pages/ProjectPage";
-import  CustomCursor  from './components/CustomCursor.js';
+import  CustomCursor  from './components/common/CustomCursor.js';
 
 
 
