@@ -29,14 +29,15 @@ function GLTFViewer({
   ambientIntensity = 0.5,
   directionalLightPosition = [0, 10, 5],
   directionalLightTarget = [0, 0, 0],
-  directionalLightIntensity = 1
+  directionalLightIntensity = 1,
+  allowPan = false
 }) {
   return (
     <Canvas style={{ width: '100%', height: '100%' }}>
       {cameraType === "perspective" ? (
-        <PerspectiveCamera position={cameraPosition}  far={1000000} />
+        <PerspectiveCamera position={cameraPosition}  far={1000} />
       ) : (
-        <OrthographicCamera position={cameraPosition}  far={1000000} />
+        <OrthographicCamera position={cameraPosition}  far={1000} />
       )}
       <Camera cameraType={cameraType} cameraPosition={cameraPosition} cameraLookAt={cameraLookAt} />
       
@@ -47,7 +48,9 @@ function GLTFViewer({
       />
       <ambientLight intensity={ambientIntensity} />
       <Model src={src} />
-      <OrbitControls target={new THREE.Vector3(...cameraLookAt)} />
+      <OrbitControls       
+      enablePan={allowPan} 
+      target={new THREE.Vector3(...cameraLookAt)} />
     </Canvas>
   );
 }

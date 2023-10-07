@@ -3,21 +3,37 @@ import { gsap } from 'gsap';
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const [isInside, setIsInside] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const cursorRef = useRef(null);
 
   useEffect(() => {
+    const userAgent =
+      typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+    const mobile = Boolean(
+      userAgent.match(
+        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+      )
+    );
+    setIsMobile(mobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // Exit if on mobile
+
     const moveCursor = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      gsap.to(cursorRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
+      if (isInside) {
+        setPosition({ x: e.clientX, y: e.clientY });
+        gsap.to(cursorRef.current, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      }
     };
 
     const handleLinkHover = () => {
-      console.log("Link Hovered"); // Debugging line
       gsap.to(cursorRef.current, {
         scale: 1.8,
         opacity: 0.5,
@@ -27,7 +43,6 @@ const CustomCursor = () => {
     };
 
     const handleLinkOut = () => {
-      console.log("Link Out"); // Debugging line
       gsap.to(cursorRef.current, {
         scale: 1,
         opacity: 1,
@@ -36,19 +51,7 @@ const CustomCursor = () => {
       });
     };
 
-    const handleMouseLeave = () => {
-      console.log("Mouse Left"); // Debugging line
-      setPosition({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-      gsap.to(cursorRef.current, {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
-        duration: 0.3,
-        ease: 'power2.out'
-      });
-    };
-
-    const links = document.querySelectorAll('a, [role="button"]');
-    console.log("Links Found: ", links.length); // Debugging line
+    const links = document.querySelectorAll('a, [role="button"], img.cursor-hover');
     links.forEach(link => {
       link.addEventListener('mouseover', handleLinkHover);
       link.addEventListener('mouseout', handleLinkOut);
@@ -56,20 +59,20 @@ const CustomCursor = () => {
     });
 
     window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseleave', handleMouseLeave);
       links.forEach(link => {
         link.removeEventListener('mouseover', handleLinkHover);
         link.removeEventListener('mouseout', handleLinkOut);
         link.style.cursor = '';
       });
     };
-  }, []);
+  }, [isInside, isMobile]);
 
   const size = 20;
+
+  if (isMobile) return null; // Don't render the cursor for mobile devices
 
   return (
     <div
@@ -82,7 +85,7 @@ const CustomCursor = () => {
         width: `${size}px`,
         height: `${size}px`,
         backgroundColor: 'black',
-        borderRadius: '50%',
+        borderRadius: '0%',
         transform: 'translate(-50%, -50%)',
         pointerEvents: 'none',
         zIndex: 9999

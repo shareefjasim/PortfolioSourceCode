@@ -2,20 +2,15 @@ import React from "react";
 import Footer from "../components/common/Footer";
 import GLTFViewer from '../components/common/GLTFViewer';
 import Card from '../components/common/Card';
+import Header from "../components/common/Header";
 
 function HomePage() {
   return (
     <div className="home-page">
-      <header className="header">
-        <div className="logo">Shareef Jasim</div>
-        <nav>
-          <a href="#work" className="menu-item before:mr-10">Work</a>
-          <a href="#about" className="menu-item before:mr-10">About</a>
-        </nav>
-      </header>
+      <Header/>
 
 
-      <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+      <div className=" top-48  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
   Responsive Text
 </div>
 
@@ -37,6 +32,15 @@ function HomePage() {
         <a href="#" className="text-black hover:text-blue-700 hover:underline">Click me!</a>
 
         <p className="text-base text-gray-700 mb-4">
+  This is a sample paragraph text styled with TailwindCSS. It's readable and has a modern design.
+</p>
+<p className="text-base text-gray-700 mb-4">
+  This is a sample paragraph text styled with TailwindCSS. It's readable and has a modern design.
+</p>
+<p className="text-base text-gray-700 mb-4">
+  This is a sample paragraph text styled with TailwindCSS. It's readable and has a modern design.
+</p>
+<p className="text-base text-gray-700 mb-4">
   This is a sample paragraph text styled with TailwindCSS. It's readable and has a modern design.
 </p>
 
@@ -61,18 +65,25 @@ function HomePage() {
       </section>
 
      
-      <Card data-target-url="https://www.google.com/" style={{ width: '500px', height: '500px' }} targetUrl="https://www.google.com/">
+      <Card data-target-url="https://www.google.com/" 
+  className="w-full md:w-500px max-w-sm md:mx-0 p-5 md:p-0"
+  targetUrl="https://www.google.com/" >
         <GLTFViewer 
           src="MYFILE.glb" 
-          cameraType="orthogonal"
+          cameraType="perspecti"
           cameraPosition={[100,100,100]} 
           cameraLookAt={[0, 0, 0]} 
           ambientIntensity={4} 
           directionalLightPosition={[5, 10, 5]}
           directionalLightTarget={[0, 0, 0]}
           directionalLightIntensity={0.8}
+          allowPan = {false}
+
         />
       </Card>
+
+
+
 
       <Footer />
     </div>
