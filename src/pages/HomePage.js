@@ -31,7 +31,7 @@ function HomePage() {
 
 
       <RowFullScreen 
-        title="DropletsClash"
+        title="DropletsClashhhhhhhh"
         description="Basic Abstraction Design"
         cardData={{
           targetUrl: "https://www.google.com/",
