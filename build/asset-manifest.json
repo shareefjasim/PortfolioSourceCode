@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.9018ad76.css",
-    "main.js": "/static/js/main.b05110e5.js",
-    "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
-    "static/media/Arch System.png": "/static/media/Arch System.69ed41334144ec481ce8.png",
-    "static/media/TrialGIF.gif": "/static/media/TrialGIF.eec9503843992da48340.gif",
-    "static/media/logosj.jpg": "/static/media/logosj.c4d37474945c777b7b6b.jpg",
-    "static/media/copyright.jpg": "/static/media/copyright.0b480aaa11e202b0d489.jpg",
-    "static/media/github.jpg": "/static/media/github.20a353b65e134bc6ec9c.jpg",
-    "static/media/darkmode.jpg": "/static/media/darkmode.891fd8a010503e7935c1.jpg",
-    "static/media/email.jpg": "/static/media/email.48b2c4624ab01a5c3ae1.jpg",
-    "index.html": "/index.html",
-    "main.9018ad76.css.map": "/static/css/main.9018ad76.css.map",
-    "main.b05110e5.js.map": "/static/js/main.b05110e5.js.map",
-    "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
+    "main.css": "/shareefjasim/PortfolioWebsite/static/css/main.9018ad76.css",
+    "main.js": "/shareefjasim/PortfolioWebsite/static/js/main.61d7f600.js",
+    "static/js/787.1ed0c42c.chunk.js": "/shareefjasim/PortfolioWebsite/static/js/787.1ed0c42c.chunk.js",
+    "static/media/Arch System.png": "/shareefjasim/PortfolioWebsite/static/media/Arch System.69ed41334144ec481ce8.png",
+    "static/media/TrialGIF.gif": "/shareefjasim/PortfolioWebsite/static/media/TrialGIF.eec9503843992da48340.gif",
+    "static/media/logosj.jpg": "/shareefjasim/PortfolioWebsite/static/media/logosj.c4d37474945c777b7b6b.jpg",
+    "static/media/copyright.jpg": "/shareefjasim/PortfolioWebsite/static/media/copyright.0b480aaa11e202b0d489.jpg",
+    "static/media/github.jpg": "/shareefjasim/PortfolioWebsite/static/media/github.20a353b65e134bc6ec9c.jpg",
+    "static/media/darkmode.jpg": "/shareefjasim/PortfolioWebsite/static/media/darkmode.891fd8a010503e7935c1.jpg",
+    "static/media/email.jpg": "/shareefjasim/PortfolioWebsite/static/media/email.48b2c4624ab01a5c3ae1.jpg",
+    "index.html": "/shareefjasim/PortfolioWebsite/index.html",
+    "main.9018ad76.css.map": "/shareefjasim/PortfolioWebsite/static/css/main.9018ad76.css.map",
+    "main.61d7f600.js.map": "/shareefjasim/PortfolioWebsite/static/js/main.61d7f600.js.map",
+    "787.1ed0c42c.chunk.js.map": "/shareefjasim/PortfolioWebsite/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9018ad76.css",
-    "static/js/main.b05110e5.js"
+    "static/js/main.61d7f600.js"
   ]
 }
