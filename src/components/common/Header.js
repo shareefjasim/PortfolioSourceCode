@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header className={`lg:flex lg:justify-between lg:items-center  ${darkMode ? 'dark' : ''}`}>
-      <div className="container mx-auto flex justify-between items-center lg:mx-0">
+      <div className="container mx-auto flex justify-between items-center lg:mx-0 z-10">
         <div className="flex items-center space-x-5">
           <img src={logoImage} alt="Logo" className="fixed top-6  left-6 filter dark:invert w-6 h-6" />
           <h1 className="text-black dark:text-white fixed top-6  left-8 text-lg font-semibold">Shareef Jasim</h1>

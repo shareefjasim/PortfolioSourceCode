@@ -26,7 +26,7 @@ function GLTFViewer({
   cameraType = "perspective",
   cameraPosition = [500, 500, 500],
   cameraLookAt = [0, 0, 0],
-  ambientIntensity = 0.5,
+  ambientIntensity = 5,
   directionalLightPosition = [0, 10, 5],
   directionalLightTarget = [0, 0, 0],
   directionalLightIntensity = 1,
