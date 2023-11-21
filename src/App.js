@@ -48,15 +48,18 @@ import EchoPage from './pages/ECHO.js';
 
 import DropletsClashPage from './pages/DropletsClash.js';
 
+
+
 import './App.css';
+
+const baseUrl = process.env.NODE_ENV === 'production' ? '/Portfolio' : '';
 
 function App() {
   return (
     <div className="App dark:bg-black">
-      <Router>
+      <Router basename={baseUrl}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/project/:id" element={<ProjectPage />} />
           <Route path="/echo" element={<EchoPage />} />
          
           <Route path="/4d-droplets-clash" element={<DropletsClashPage />} />

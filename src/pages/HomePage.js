@@ -30,39 +30,8 @@ function HomePage() {
 
 
 
-      <RowFullScreen 
-        title="DropletsClashh"
-        description="Basic Abstraction Design"
-        cardData={{
-          targetUrl: "https://www.google.com/",
-          src: "MYFILE.glb",
-          cameraType: "perspective",
-          cameraPosition: [100, 100, 100],
-          cameraLookAt: [0, 0, 0],
-          ambientIntensity: 400,
-          directionalLightPosition: [5, 10, 5],
-          directionalLightTarget: [0, 0, 0],
-          directionalLightIntensity: 1,
-          allowPan: false
-        }}
-      />
 
-      <RowFullScreen 
-        title="Hello, I am Shareef"
-        description="Computational Designer / Architect"
-        cardData={{
-          targetUrl: "https://www.google.com/",
-          src: "MYFILE.glb",
-          cameraType: "perspective",
-          cameraPosition: [100, 100, 100],
-          cameraLookAt: [0, 0, 0],
-          ambientIntensity: 400,
-          directionalLightPosition: [5, 10, 5],
-          directionalLightTarget: [0, 0, 0],
-          directionalLightIntensity: 1,
-          allowPan: false
-        }}
-      />
+
 
       <Footer />
     </div>
