@@ -7,26 +7,11 @@ const EchoPage = () => {
   return (
     <div>
         <Header />
-        <h1>ECHO</h1>
-        {/* Add your page content here */}
-        <div class="flex justify-between">
-  <div class="bg-blue-500 p-4">
-    Box 1
-  </div>
-  <div class="bg-blue-500 p-4">
-    Box 3
-  </div>
-</div>
-
-<div class="grid grid-rows-3 gap-40">
-  <div class="bg-blue-500 p-4">
-    Box 1
-  </div>
-  
-  <div class="bg-blue-500 p-4">
-    Box 3
-  </div>
-</div>
+        <img 
+        src= "/projects/ECHO/images/Arch System.png"
+        alt="Descriptive alt text" 
+        className="w-screen h-screen object-contain object-center object-frame z-0"
+      />
 
         <Footer />
     </div>
