@@ -1,53 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import TrialGif from "../assets/TrialGIF.gif";
-import RowFullScreen from '../components/common/RowFullScreen'; // Adjust the import path as needed
-
-
-
+import RowFullScreen from '../components/common/RowFullScreen';
+import ProjectsFilter from '../components/home/ProjectsFilter';
+import projects from '../components/projects/projectsData';
 
 function HomePage() {
+  const [currentFilter, setCurrentFilter] = useState("All Projects");
+  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Construction", "Software Development", "Web Development"];
+
+  const [isSticky, setIsSticky] = useState(false);
+  const filteredProjects = projects.filter(project =>
+    currentFilter === "All Projects" || project.categories.includes(currentFilter)
+  );
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const filterPosition = document.querySelector('.filter-container').getBoundingClientRect().top;
+      setIsSticky(filterPosition <= 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className="home-page">
-      <Header/>
+      <Header />
+
       <img 
         src={TrialGif} 
         alt="Descriptive alt text" 
         className="w-screen h-screen object-contain object-center object-frame z-0"
       />
 
-
-      <RowFullScreen 
-        title="ECHO"
-        description="Sinop,Turkey"
-        cardData={{
-          imageSrc: "/projects/ECHO/images/Arch System.png",
-          imageAlt: "A description of the image",
-          targetUrl: "/echo"
-        }}
+      <ProjectsFilter
+        categories={categories}
+        currentFilter={currentFilter}
+        onFilterChange={setCurrentFilter}
+        className={isSticky ? 'sticky' : ''}
       />
 
-
-
-
-      <RowFullScreen 
-        title="DropletsClashh"
-        description="Basic Abstraction Design"
-        cardData={{
-          targetUrl: "https://www.google.com/",
-          src: "/MYFILE.glb",
-          cameraType: "perspective",
-          cameraPosition: [100, 100, 100],
-          cameraLookAt: [0, 0, 0],
-          ambientIntensity: 400,
-          directionalLightPosition: [5, 10, 5],
-          directionalLightTarget: [0, 0, 0],
-          directionalLightIntensity: 1,
-          allowPan: false
-        }}
-      />
-
+      {filteredProjects.map(project => (
+        <RowFullScreen 
+          key={project.title}
+          title={project.title}
+          description={project.description}
+          cardData={project}
+        />
+      ))}
 
       <Footer />
     </div>

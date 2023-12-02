@@ -1,0 +1,75 @@
+import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+
+const Card = ({ children, style, targetUrl, className }) => {
+  const cardRef = useRef(null);
+  const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    let animation;
+
+    const handleMouseMove = (e) => {
+      if (isClicked) return;
+
+      const cardRect = card.getBoundingClientRect();
+      const centerX = cardRect.left + cardRect.width / 2;
+      const centerY = cardRect.top + cardRect.height / 2;
+
+      const rotateX = -(e.clientY - centerY) / 50;
+      const rotateY = (e.clientX - centerX) / 50;
+
+      // Kill the previous animation to prevent conflicts
+      if (animation) {
+        animation.kill();
+      }
+
+      animation = gsap.to(card, {
+        duration: 1,
+        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+        ease: 'SlowMo.easeInOut'
+      });
+    };
+
+    const handleMouseUp = () => {
+      setIsClicked(true);
+
+      const cardRect = card.getBoundingClientRect();
+      const scaleXFactor = window.innerWidth / cardRect.width;
+      const scaleYFactor = window.innerHeight / cardRect.height;
+      const maxScaleFactor = Math.max(scaleXFactor, scaleYFactor);
+
+      gsap.to(card, {
+        duration: 0.5,
+        scaleX: maxScaleFactor,
+        scaleY: maxScaleFactor,
+        x: window.innerWidth / 2 - cardRect.left - cardRect.width / 2,
+        y: window.innerHeight / 2 - cardRect.top - cardRect.height / 2,
+        opacity: 0,
+        onComplete: () => {
+          if (targetUrl) {
+            window.location.href = targetUrl;
+          }
+        }
+      });
+    };
+
+    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove);
+      card.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [targetUrl, isClicked]);
+
+  return (
+    <div ref={cardRef}
+      className={`border border-gray-300 rounded-none p-0 shadow-none hover:shadow transition-shadow duration-300 ${className}`}
+      style={{ ...style }}>
+      {children}
+    </div>
+  );
+}
+
+export default Card;

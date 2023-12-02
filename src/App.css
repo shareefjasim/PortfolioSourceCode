@@ -85,3 +85,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Additional styles can be added as needed */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.filter-text {
+  margin: 0.5rem;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+
+  &:hover {
+    color: #4f46e5; /* primary color */
+  }
+
+  &.active {
+    font-weight: bold;
+    color: #4f46e5; /* primary color */
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #4f46e5; /* primary color */
+    }
+  }
+}

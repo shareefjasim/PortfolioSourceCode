@@ -1,12 +1,11 @@
 // EchoPage.js
 import React from 'react';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
+
 
 const DropletsClashPage = () => {
   return (
     <div>
-        <Header />
+       
         <h1>DropletsClash</h1>
         {/* Add your page content here */}
         <div class="flex justify-between">
@@ -28,7 +27,7 @@ const DropletsClashPage = () => {
   </div>
 </div>
 
-        <Footer />
+      
     </div>
   );
 };
