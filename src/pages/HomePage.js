@@ -3,14 +3,18 @@ import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import TrialGif from "../assets/TrialGIF.gif";
 import RowFullScreen from '../components/common/RowFullScreen';
-import ProjectsFilter from '../components/home/ProjectsFilter';
 import projects from '../components/projects/projectsData';
+import FilterButton from '../components/home/FilterButton';
 
 function HomePage() {
+
   const [currentFilter, setCurrentFilter] = useState("All Projects");
+  const [isSticky, setIsSticky] = useState(false);
   const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Construction", "Software Development", "Web Development"];
 
-  const [isSticky, setIsSticky] = useState(false);
+
+
+
   const filteredProjects = projects.filter(project =>
     currentFilter === "All Projects" || project.categories.includes(currentFilter)
   );
@@ -18,7 +22,7 @@ function HomePage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const filterPosition = document.querySelector('.filter-container').getBoundingClientRect().top;
+      const filterPosition = document.querySelector('.filter-button').getBoundingClientRect().top;
       setIsSticky(filterPosition <= 0);
     };
 
@@ -39,11 +43,11 @@ function HomePage() {
         className="w-screen h-screen object-contain object-center object-frame z-0"
       />
 
-      <ProjectsFilter
+<FilterButton
         categories={categories}
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}
-        className={isSticky ? 'sticky' : ''}
+        isSticky={isSticky}
       />
 
       {filteredProjects.map(project => (

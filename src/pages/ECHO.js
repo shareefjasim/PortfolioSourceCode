@@ -15,7 +15,7 @@ const EchoPage = () => {
   return (
     <div>
 
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col min-h-screen">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col min-h-screen z-0">
     
        
 

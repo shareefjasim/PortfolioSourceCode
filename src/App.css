@@ -84,41 +84,69 @@ h1, h2, h3, h4, h5, h6 {
   color: #555; /* General project text color */
 }
 
-/* Additional styles can be added as needed */
-.filter-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 1rem;
+
+
+
+
+
+
+
+
+
+/* Sticky positioning for the button */
+.filter-button {
+  width: 24px;
+  height: 24px;
+  position: sticky;
+  left: 50%; /* Center horizontally */
 }
+
+.filter-button-wrapper {
+  position: relative; /* Establishes a new positioning context */
+}
+
+/* Positioning the categories menu */
+.filter-categories {
+  position: absolute;
+  top: calc(100% + 40px); /* Position below the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #595959;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+}
+
+
+
+/* Sticky positioning */
 .sticky {
   position: sticky;
-  top: 0;
+  top: 24px;
 }
 
-.filter-text {
-  margin: 0.5rem;
-  padding: 0.25rem 0;
+.sticky-menu {
+  position: sticky;
+  top: 48px;
+}
+
+/* Filter category */
+.filter-category {
+  padding: 0.5rem ;
   cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: font-weight 0.3s ease, color 0.3s ease;
+  min-width: max-content;
+}
 
-  &:hover {
-    color: #4f46e5; /* primary color */
-  }
+.filter-category:hover {
+  color: #aeaeae;
+}
 
-  &.active {
-    font-weight: bold;
-    color: #4f46e5; /* primary color */
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: #4f46e5; /* primary color */
-    }
-  }
+.filter-category.active {
+  color: #ffffff;
 }
