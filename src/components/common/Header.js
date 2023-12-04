@@ -65,19 +65,25 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
       transition-all duration-500 ease-in-out`}>
 
 
-      <a href="#workSection" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black px-3 h-6 leading-6 text-2xl">
-        Work
+      <a href="#workSection" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl">
+        WORK
       </a>
-      <Link to="/about" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black px-3 h-6 leading-6 text-2xl">
-        About
+      <Link to="/about" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl ">
+        ABOUT
       </Link>
+      <a>
+
+      </a>
+      <a>
+        
+      </a>
       
       {/* Filter Categories for Mobile */}
       {categories.map(category => (
         <a
           key={category}
           href="#"
-          className="bg-black text-white px-3 h-6 leading-6 text-2xl min-w-[200px]"
+          className="bg-black text-white px-3 h-6 leading-6 text-center text-2xl min-w-[270px]"
           onClick={() => { onFilterChange(category); closeMenu(); }}
         >
           {category}
