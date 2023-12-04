@@ -6,7 +6,7 @@ const RowFullScreen = ({ title, description, cardData }) => {
   const renderCardContent = () => {
     if (cardData.mediaType === 'image') {
       return (
-        <img src={cardData.mediaSrc} alt={cardData.imageAlt || 'Card Image'} className="object-contain dark:invert-0" />
+        <img src={cardData.mediaSrc} alt={cardData.imageAlt || 'Card Image'} className="object-contain dark:invert-0 z-30" />
       );
     } else if (cardData.mediaType === '3dmodel') {
       return (
@@ -38,7 +38,7 @@ const RowFullScreen = ({ title, description, cardData }) => {
           <div className="absolute top-0 left-0 right-0 bottom-0">
             <Card 
               data-target-url={cardData.targetUrl} 
-              className="w-full h-full"
+              className="w-full h-full "
               targetUrl={cardData.targetUrl} 
             >
               {renderCardContent()}

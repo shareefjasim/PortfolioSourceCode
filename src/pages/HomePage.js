@@ -10,7 +10,7 @@ function HomePage() {
 
   const [currentFilter, setCurrentFilter] = useState("All Projects");
   const [isSticky, setIsSticky] = useState(false);
-  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Construction", "Software Development", "Web Development"];
+  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Software Development", "Web Development"];
 
 
 
@@ -20,22 +20,12 @@ function HomePage() {
   );
 
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const filterPosition = document.querySelector('.filter-button').getBoundingClientRect().top;
-      setIsSticky(filterPosition <= 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <div className="home-page">
-      <Header />
+      <Header categories={categories} 
+        currentFilter={currentFilter} 
+        onFilterChange={setCurrentFilter} 
+      />
 
       <img 
         src={TrialGif} 
@@ -47,7 +37,7 @@ function HomePage() {
         categories={categories}
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}
-        isSticky={isSticky}
+        
       />
 
       {filteredProjects.map(project => (

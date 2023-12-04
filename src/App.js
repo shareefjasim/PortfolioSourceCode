@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -13,13 +13,31 @@ import CliffYouthCenterPage from './pages/CliffYouthCenter.js';
 import VenueBuildingSLITPage from './pages/VenueBuildingSLIT.js';
 import ApeToolsPage from './pages/ApeTools.js';
 import './App.css';
+import projects from './components/projects/projectsData';
+
 
 function App() {
+
+  const [currentFilter, setCurrentFilter] = useState("All Projects");
+  const [isSticky, setIsSticky] = useState(false);
+  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Software Development", "Web Development"];
+
+
+
+
+  const filteredProjects = projects.filter(project =>
+    currentFilter === "All Projects" || project.categories.includes(currentFilter)
+  );
+
+  
   return (
     <div className="App dark:bg-black dark:text-white">
       <Router>
       <CustomCursor />
-       <Header/>
+      <Header categories={categories} 
+        currentFilter={currentFilter} 
+        onFilterChange={setCurrentFilter} 
+      />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/echo" element={<EchoPage />} />
