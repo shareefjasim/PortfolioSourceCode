@@ -30,7 +30,7 @@ function HomePage() {
       <img 
         src={TrialGif} 
         alt="Descriptive alt text" 
-        className="w-screen h-screen object-contain object-center object-frame z-0"
+        className="w-screen h-screen object-contain object-center object-frame z-0 dark:invert"
       />
 
 <FilterButton

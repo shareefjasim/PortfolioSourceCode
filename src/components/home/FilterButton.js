@@ -31,13 +31,13 @@ const FilterButton = ({ categories, currentFilter, onFilterChange }) => {
   return (
     <>
       {/* Large Screens Filter Menu */}
-      <div className={`hidden lg:flex sticky top-6 justify-center z-50`}>
+      <div className={`hidden lg:flex sticky top-6 justify-center z-40`}>
         <div className="rounded-none flex  flex-row h-6  cursor-hover">
           {/* Categories mapping */}
           {categories.map(category => (
             <span
               key={category}
-              className={`bg-black dark:bg-white  menu-item px-1  flex items-center text-white hover:text-white ${currentFilter === category ? '' : ''}`}
+              className={`bg-black dark:bg-white  menu-item px-1  flex items-center text-white hover:text-white dark:text-black  ${currentFilter === category ? '' : ''}`}
               onClick={() => onFilterChange(category)}
             >
               {category}

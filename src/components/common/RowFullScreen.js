@@ -26,7 +26,7 @@ const RowFullScreen = ({ title, description, cardData }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen items-center md:items-start">
+    <div className="flex flex-col md:flex-row h-screen items-center md:items-start ">
       <div className="text-section w-full md:w-1/2 md:p-40 p-6 flex flex-col justify-start">
         <h1 className="intro-name text-2xl md:text-4xl lg:text-5xl font-bold dark:text-white">{title}</h1>
         <p className="intro-description mt-2 text-base md:text-lg lg:text-xl dark:grey-300">{description}</p>
@@ -37,9 +37,8 @@ const RowFullScreen = ({ title, description, cardData }) => {
         <div className="relative pb-[100%]">
           <div className="absolute top-0 left-0 right-0 bottom-0">
             <Card 
-              data-target-url={cardData.targetUrl} 
               className="w-full h-full "
-              targetUrl={cardData.targetUrl} 
+              targetUrl={`#${cardData.targetUrl}`} 
             >
               {renderCardContent()}
             </Card>

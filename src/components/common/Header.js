@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from '../../assets/icons/SJ LOGO WhiteBG 3rd 12 2023.svg';
+import logoImage from '../../assets/icons/logoSJ 16th 12 2023.svg';
 import darkModeIcon from '../../assets/icons/darkmode.jpg';
-import FilterButton from '../../components/home/FilterButton';
 
 
 const Header = ({ categories, currentFilter, onFilterChange }) => {
@@ -19,8 +18,17 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     document.documentElement.style.transition = 'background-color 500ms';
   }, [darkMode]);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
-  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    if (!menuOpen) {
+      // Disable scrolling
+      document.body.classList.add('overflow-hidden');
+    } else {
+      // Enable scrolling
+      document.body.classList.remove('overflow-hidden');
+    }
+  };
+    const closeMenu = () => setMenuOpen(false);
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
@@ -29,12 +37,12 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
 
   return (
     <header className={`lg:flex lg:justify-between lg:items-center ${darkMode ? 'dark' : ''}`}>
-  <div className="container mx-auto flex justify-between items-center lg:mx-0 z-10">
-    <div className="flex items-center space-x-4">
+  <div className="container mx-auto flex justify-between items-center lg:mx-0 z-50">
+    <div className="flex items-center space-x-4 z-40">
       <a href="/" target="_blank" rel="noopener noreferrer">
-        <img src={logoImage} alt="Logo" className=" cursor-hover fixed top-6 left-6  z-20 dark:invert w-12 h-6" />
+        <img src={logoImage} alt="Logo" className=" cursor-hover fixed top-6 left-6  dark:invert w-12 h-6" />
       </a>
-      <Link to="/" style={{ left:'72px' }} className="fixed top-6 z-10">
+      <Link to="/" style={{ left:'72px' }} className="fixed top-6 ">
         <h1 className="bg-black dark:bg-white text-white dark:text-black px-1 text-lg font-semibold h-6">
           SHAREEF JASIM
         </h1>
@@ -46,10 +54,9 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     <img 
       src={darkModeIcon} 
       alt="Toggle Dark Mode" 
-      className="cursor-hover fixed top-6 right-16 lg:right-6 z-40 w-6 h-6  dark:invert transition-colors duration-500 "
+      className="cursor-hover fixed top-6 right-16 lg:right-6 z-50  w-6 h-6  dark:invert transition-colors duration-500 "
       onClick={toggleDarkMode}
     />
-
     {/* Mobile Menu Button */}
     <button 
       onClick={toggleMenu} 
@@ -72,18 +79,15 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
         ABOUT
       </Link>
       <a>
-
       </a>
-      <a>
-        
+      <a>        
       </a>
-      
       {/* Filter Categories for Mobile */}
       {categories.map(category => (
         <a
           key={category}
           href="#"
-          className="bg-black text-white px-3 h-6 leading-6 text-center text-2xl min-w-[270px]"
+          className="bg-black text-white dark:bg-white dark:text-black px-3 h-6 leading-6 text-center text-2xl min-w-[270px]"
           onClick={() => { onFilterChange(category); closeMenu(); }}
         >
           {category}
