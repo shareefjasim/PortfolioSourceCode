@@ -10,15 +10,11 @@ function HomePage() {
 
   const [currentFilter, setCurrentFilter] = useState("All Projects");
   const [isSticky, setIsSticky] = useState(false);
-  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Software Development", "Web Development"];
-
-
-
+  const categories = ["All Projects", "Architecture", "Computational Design", "Abstract Art", "Software Development", "Web Development"];
 
   const filteredProjects = projects.filter(project =>
     currentFilter === "All Projects" || project.categories.includes(currentFilter)
   );
-
 
   return (
     <div className="home-page">
@@ -33,7 +29,7 @@ function HomePage() {
         className="w-screen h-screen object-contain object-center object-frame z-0 dark:invert"
       />
 
-<FilterButton
+      <FilterButton
         categories={categories}
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}

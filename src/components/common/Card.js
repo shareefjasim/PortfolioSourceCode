@@ -61,7 +61,7 @@ const Card = ({ children, style, targetUrl, className, mediaType }) => {
 
   return (
     <div ref={cardRef}
-      className={`border border-gray-300 dark:border-gray-700 rounded-none p-0  shadow-none hover:shadow transition-shadow duration-300 ${className}`}
+      className={`border flex justify-center border-gray-300 dark:border-gray-700 rounded-none p-0  shadow-none hover:shadow transition-shadow duration-300 ${className}`}
       style={{ ...style }}>
       {children}
     </div>

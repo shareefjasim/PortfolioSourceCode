@@ -4,16 +4,26 @@ const projects = [
       description: "Sinop,Turkey",
       mediaType: "image",
       mediaSrc: "/projects/ECHO/images/Arch System.png",
-      targetUrl: "/echo",
+      targetUrl: "/ECHO",
       categories: ["Architecture"]
     },
+
     {
-      title: "DropletsClashh",
+      title: "4D Droplets Clash",
+      description: "Sinop,Turkey",
+      mediaType: "image",
+      mediaSrc: "/projects/4D Droplets Clash/images/mix 1t.jpg",
+      targetUrl: "/4D Droplets Clash",
+      categories: ["Abstract Art"]
+    },
+    
+    {
+      title: "Bubble Cube",
       description: "Basic Abstraction Design",
       mediaType: "3dmodel",
       mediaSrc: "/MYFILE.glb",
       cameraType: "perspective",
-      cameraPosition: [100, 100, 100],
+      cameraPosition: [250, 250, 250],
       cameraLookAt: [0, 0, 0],
       ambientIntensity: 400,
       directionalLightPosition: [5, 10, 5],
@@ -27,15 +37,15 @@ const projects = [
       title: "Cowes Week Pavilion",
       description: "Description of Cowes Week Pavilion",
       mediaType: "image",
-      mediaSrc: "/path/to/cowes-week-pavilion-image.jpg",
-      targetUrl: "/cowes-week-pavilion",
-      categories: ["Architecture"]
+      mediaSrc: "/projects/Cowes Week Pavilion/images/robot 2.png",
+      targetUrl: "Cowes Week Pavilion",
+      categories: ["Computational Design","Architecture"]
     },
     {
-      title: "Local Facade Geometries",
-      description: "Description of Local Facade Geometries",
+      title: "Algorithm for Local Facade Geometries",
+      description: "GENx Facade Solution",
       mediaType: "image",
-      mediaSrc: "/path/to/local-facade-geometries-image.jpg",
+      mediaSrc: "/projects/GENx Facade Solution/images/combined.jpg",
       targetUrl: "/local-facade-geometries",
       categories: ["Computational Design","Software Development"]
     },
@@ -43,31 +53,39 @@ const projects = [
       title: "Four Seasons Facade",
       description: "Description of Four Seasons Facade",
       mediaType: "image",
-      mediaSrc: "/path/to/four-seasons-facade-image.jpg",
-      targetUrl: "/four-seasons-facade",
+      mediaSrc: "/projects/Four Seasons Facade System/images/ms5-Photoshopped edited.png",
+      targetUrl: "/Four Seasons Facade",
       categories: ["Architecture"]
     },
     {
       title: "Cliff Youth Center",
       description: "Description of Cliff Youth Center",
       mediaType: "image",
-      mediaSrc: "/path/to/cliff-youth-center-image.jpg",
-      targetUrl: "/cliff-youth-center",
+      mediaSrc: "/projects/Cliff Youth Center/images/Image10.png",
+      targetUrl: "/Cliff Youth Center",
       categories: ["Architecture"]
     },
     {
       title: "Venue Building Silt",
-      description: "Description of Venue Building Silt",
+      description: "Middelkerke, Belgium",
       mediaType: "image",
       mediaSrc: "/path/to/venue-building-silt-image.jpg",
       targetUrl: "/venue-building-silt",
-      categories: ["Architecture"]
+      categories: ["Computational Design"]
     },
     {
       title: "Ape Tools",
       description: "Description of Ape Tools",
       mediaType: "image",
       mediaSrc: "/path/to/ape-tools-image.jpg",
+      targetUrl: "/ape-tools",
+      categories: ["Computational Design", "Software Development"]
+    },
+    {
+      title: "WEAVE",
+      description: "The Extinction Museum",
+      mediaType: "image",
+      mediaSrc: "/projects/WEAVE/images/exploded.jpg",
       targetUrl: "/ape-tools",
       categories: ["Architecture"]
     }

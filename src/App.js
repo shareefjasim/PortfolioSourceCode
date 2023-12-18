@@ -20,7 +20,7 @@ function App() {
 
   const [currentFilter, setCurrentFilter] = useState("All Projects");
   const [isSticky, setIsSticky] = useState(false);
-  const categories = ["All Projects", "Architecture", "Computational Design", "Art", "Software Development", "Web Development"];
+  const categories = ["All Projects", "Architecture", "Computational Design", "Abstract Art", "Software Development", "Web Development"];
 
 
 
@@ -40,7 +40,7 @@ function App() {
       />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/echo" element={<EchoPage />} />
+          <Route path="/ECHO" element={<EchoPage />} />
           <Route path="/cowes-week-pavilion" element={<CowesWeekPavilionPage />} />
           <Route path="/4d-droplets-clash" element={<DropletsClashPage />} />
           <Route path="/local-facade-geometries" element={<LocalFacadePage />} />

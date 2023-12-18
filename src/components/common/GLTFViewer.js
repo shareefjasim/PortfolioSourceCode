@@ -26,12 +26,16 @@ function GLTFViewer({
   cameraType = "perspective",
   cameraPosition = [500, 500, 500],
   cameraLookAt = [0, 0, 0],
-  ambientIntensity = 5,
+  ambientIntensity = 5000,
   directionalLightPosition = [0, 10, 5],
   directionalLightTarget = [0, 0, 0],
-  directionalLightIntensity = 1,
+  directionalLightIntensity = 5,
   allowPan = false
-}) {
+}) 
+
+
+
+{
   return (
     <Canvas style={{ width: '100%', height: '100%' }}>
       {cameraType === "perspective" ? (
@@ -46,11 +50,14 @@ function GLTFViewer({
         intensity={directionalLightIntensity}
         target-position={directionalLightTarget}
       />
+
+
       <ambientLight intensity={ambientIntensity} />
       <Model src={src} />
       <OrbitControls       
       enablePan={allowPan} 
       target={new THREE.Vector3(...cameraLookAt)} />
+    
     </Canvas>
   );
 }
