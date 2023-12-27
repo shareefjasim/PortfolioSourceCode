@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
 import CustomizableCarousel from '../components/common/CustomizableCarousel';
 
 const EchoPage = () => {
@@ -19,7 +17,7 @@ const EchoPage = () => {
     
        
 
-        <img src="/projects/ECHO/images/Arch System.png" alt="3D Architectural System" className="w-screen h-screen object-contain object-center object-frame z-0"
+        <img src="/projects/ECHO/images/Arch System.png" loading="lazy" alt="3D Architectural System" className="w-screen h-screen object-contain object-center object-frame z-0"
  />
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

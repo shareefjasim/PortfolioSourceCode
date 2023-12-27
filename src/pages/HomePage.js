@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
-import TrialGif from "../assets/TrialGIF.gif";
+import BackgroundGif from "../assets/Home.gif";
 import RowFullScreen from '../components/common/RowFullScreen';
 import projects from '../components/projects/projectsData';
 import FilterButton from '../components/home/FilterButton';
@@ -24,10 +24,10 @@ function HomePage() {
       />
 
       <img 
-        src={TrialGif} 
+        src={BackgroundGif} 
         alt="Descriptive alt text" 
-        className="w-screen h-screen object-contain object-center object-frame z-0 dark:invert"
-      />
+        className="w-screen h-screen object-cover lg:object-contain lg:object-center dark:invert"
+        />
 
       <FilterButton
         categories={categories}

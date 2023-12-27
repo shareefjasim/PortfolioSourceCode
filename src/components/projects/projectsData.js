@@ -10,7 +10,7 @@ const projects = [
 
     {
       title: "4D Droplets Clash",
-      description: "Sinop,Turkey",
+      description: "Basic Abstraction Design",
       mediaType: "image",
       mediaSrc: "/projects/4D Droplets Clash/images/mix 1t.jpg",
       targetUrl: "/4D Droplets Clash",
@@ -86,7 +86,7 @@ const projects = [
       description: "The Extinction Museum",
       mediaType: "image",
       mediaSrc: "/projects/WEAVE/images/exploded.jpg",
-      targetUrl: "/ape-tools",
+      targetUrl: "/WEAVE",
       categories: ["Architecture"]
     }
     // ... add any other projects here

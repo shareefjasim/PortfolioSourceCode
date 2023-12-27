@@ -19,8 +19,8 @@ const CustomCursor = () => {
     if (!mobile) {
       // Set initial position of the cursor using GSAP
       gsap.set(cursorRef.current, {
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
+        x: (window.innerWidth /2) -12,
+        y: (window.innerHeight / 2)-12,
       });
     }
   }, []);
