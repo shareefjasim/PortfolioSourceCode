@@ -1,71 +1,60 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 
-const Card = ({ children, style, targetUrl, className, mediaType }) => {
+const Card = ({ children, targetUrl, mediaType }) => {
   const cardRef = useRef(null);
-  const [isClicked, setIsClicked] = useState(false);
 
-  useEffect(() => {
-    const card = cardRef.current;
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
 
-    const handleMouseMove = (e) => {
-      if (isClicked) return;
+    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    const deltaX = (e.clientX - centerX) / 100;
+    const deltaY = (e.clientY - centerY) / 100;
 
-      const cardRect = card.getBoundingClientRect();
-      const centerX = cardRect.left + cardRect.width / 2;
-      const centerY = cardRect.top + cardRect.height / 2;
+    gsap.to(cardRef.current, {
+      rotationY: deltaX,
+      rotationX: -deltaY,
+      transformPerspective: 1000,
+      ease: 'power1.out',
+      duration: 0.5
+    });
+  };
 
-      const rotateX = -(e.clientY - centerY) / 50;
-      const rotateY = (e.clientX - centerX) / 50;
-
-      gsap.to(card, {
-        duration: 1,
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        ease: 'SlowMo.easeInOut'
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        duration: 0.5,
-        transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
-        ease: 'SlowMo.easeInOut'
-      });
-    };
-
-    const handleClick = () => {
-      if (targetUrl) {
-        window.location.href = targetUrl;
-      }
-    };
-
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
-    card.addEventListener('click', handleClick);
-
-    return () => {
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-      card.removeEventListener('click', handleClick);
-    };
-  }, [targetUrl]);
-
-  // Additional logic based on mediaType
-  useEffect(() => {
-    if (mediaType === '3dmodel') {
-      // Apply specific interactions or styles for 3D models
-    } else {
-      // Apply interactions or styles for images
-    }
-  }, [mediaType]);
+  const handleMouseLeave = () => {
+    gsap.to(cardRef.current, {
+      rotationY: 0,
+      rotationX: 0,
+      ease: 'power1.out',
+      duration: 0.5
+    });
+  };
 
   return (
-    <div ref={cardRef}
-      className={`border flex justify-center border-gray-300 dark:border-gray-700 rounded-none p-0  shadow-none hover:shadow transition-shadow duration-300 ${className}`}
-      style={{ ...style }}>
-      {children}
-    </div>
+    <a 
+      href={targetUrl} 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+        className={`${mediaType === '3dmodel' ? '3d-model-class' : ''} 
+        shadow-custom dark:shadow-customDark`}
+
+        style={{ 
+        width: '100%', 
+        paddingBottom: '100%', 
+        position: 'relative',
+        willChange: 'transform', // for hardware acceleration
+        display: 'block', // ensures the <a> tag behaves as a block element
+        textDecoration: 'none', // optional, removes the underline
+        color: 'inherit' // optional, ensures text color matches your design
+      }}
+    >
+      <div className="menu-item absolute inset-0 flex justify-center items-center">
+        {children}
+      </div>
+    </a>
   );
-}
+};
 
 export default Card;

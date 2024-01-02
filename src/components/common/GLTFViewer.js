@@ -55,8 +55,14 @@ function GLTFViewer({
       <ambientLight intensity={ambientIntensity} />
       <Model src={src} />
       <OrbitControls       
-      enablePan={allowPan} 
-      target={new THREE.Vector3(...cameraLookAt)} />
+        enablePan={allowPan} 
+        target={new THREE.Vector3(...cameraLookAt)}
+        mouseButtons={{
+          LEFT: THREE.MOUSE.RIGHT, // Change orbiting to right-click
+          MIDDLE: THREE.MOUSE.MIDDLE,
+          RIGHT: THREE.MOUSE.LEFT // Optionally, you can assign another action to the left click
+        }}
+      />
     
     </Canvas>
   );

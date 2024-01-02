@@ -38,14 +38,14 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
   return (
     <header className={`lg:flex lg:justify-between lg:items-center ${darkMode ? 'dark' : ''}`}>
   <div className="container mx-auto flex justify-between items-center lg:mx-0 z-50">
-    <div className="flex items-center space-x-4 z-40">
+    <div className="flex items-center space-x-6 z-40">
       <a href="/" target="_blank" rel="noopener noreferrer">
         <img src={logoImage} alt="Logo" className=" cursor-hover fixed top-6 left-6  dark:invert w-12 h-6" />
       </a>
       <Link to="/" style={{ left:'72px' }} className="fixed top-6 ">
-        <h1 className="bg-black dark:bg-white text-white dark:text-black px-1 text-lg font-semibold h-6">
+        <p className="bg-black dark:bg-white text-white dark:text-black px-1 text-lg  h-6">
           SHAREEF JASIM
-        </h1>
+        </p>
       </Link>
      
     </div>
@@ -54,7 +54,7 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     <img 
       src={darkModeIcon} 
       alt="Toggle Dark Mode" 
-      className="cursor-hover fixed top-6 right-16 lg:right-6 z-50  w-6 h-6  dark:invert transition-colors duration-500 "
+      className="cursor-hover fixed top-6 right-18 lg:right-6 z-50  w-6 h-6  dark:invert transition-colors duration-500 "
       onClick={toggleDarkMode}
     />
     {/* Mobile Menu Button */}
@@ -99,7 +99,7 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     </nav>
 
     {/* Large Screen Navigation */}
-    <nav className="hidden lg:flex space-x-4 fixed top-6 right-16">
+    <nav className="hidden lg:flex space-x-6 fixed top-6 right-18">
       <a href="#workSection" className="bg-black dark:bg-white text-white dark:text-black px-1 h-6">
         WORK
       </a>

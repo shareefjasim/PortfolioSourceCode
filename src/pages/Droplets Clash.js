@@ -3,8 +3,9 @@ import React from 'react';
 
 const images = [
   // Add all the image paths here
-  "public/projects/4D Droplets Clash/images/Model Images/20161121_062135-1.jpg",
-  "public/projects/4D Droplets Clash/images/Model Images/20161121_062135.jpg",
+  "projects/Droplets Clash/images/Model Images/20161121_062135-1.jpg",
+  "projects/Droplets Clash/images/Model Images/20161121_062135.jpg",
+  "projects/Droplets Clash/images/3tt.jpg",
   // ... add all other image paths
 ];
 
@@ -21,11 +22,15 @@ const DropletsClashPage = () => {
           <img 
             key={index}
             src={image} 
-            alt={`4D Droplets Clash ${index}`} 
+            alt={`Droplets Clash ${index}`} 
             className="w-full h-auto object-cover mb-4"
           />
         ))}
       </div>
+
+          
+
+
     </div>
   );
 };

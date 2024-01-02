@@ -7,12 +7,12 @@ import copyrightIcon from '../../assets/icons/copyright.jpg';
 
 const Footer = () => {
   return (
-    <footer className="text-black dark:text-white tra fixed bottom-0 w-full z-30 flex justify-between items-center bg-transparent">
+    <footer className="text-black dark:text-white  fixed bottom-0 w-full z-30 flex justify-between items-center bg-transparent">
       <p>
-        <img src={copyrightIcon} alt="Copyright" className="dark:invert absolute bottom-6 left-6 w-6 h-6 mr-1" />
+        <img src={copyrightIcon} alt="Copyright" className="dark:invert absolute bottom-6 left-6 w-6 h-6 " />
         
       </p>
-      <div className="flex space-x-4 absolute bottom-6 right-6">
+      <div className="flex space-x-6 absolute bottom-6 right-6">
         <a href="https://www.linkedin.com/in/shareef-jasim/" target="_blank" rel="noopener noreferrer">
           <img src={linkedInIcon} className="filter dark:invert w-6 h-6" alt="LinkedIn" />
         </a>

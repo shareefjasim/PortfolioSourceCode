@@ -1,16 +1,89 @@
 
+@font-face {
+  font-family: 'OrbitronMedium';
+  src: url('/src/assets/fonts/orbitron/Orbitron-Medium.woff2') format('woff2');
+  font-weight: 400; /* Adjust as needed */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoLight';
+  src: url('/src/assets/fonts/roboto/Roboto-Light.woff2') format('woff2');
+  font-weight: 400; /* Adjust as needed */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoThin';
+  src: url('/src/assets/fonts/roboto/Roboto-Thin.woff2') format('woff2');
+  font-weight: 400; /* Adjust as needed */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MontserratLight';
+  src: url('/src/assets/fonts/montserrat/Montserrat-Light.woff2') format('woff2');
+  font-weight: 400; /* Adjust as needed */
+  font-style: normal;
+}
+
+
+
 /* General Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'RobotoThin', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #333; /* General text color */
 }
 
+
+
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Futura', sans-serif;
+  font-family: 'OrbitronMedium', sans-serif;
   margin-top: 0;
 }
+
+h1 {
+  font-size: 1.25rem; /* 40px */
+  font-family: 'RobotoThin', sans-serif;
+
+  
+}
+
+h2 {
+  font-size: 1rem; /* 32px */
+  line-height: 1.75rem;
+
+}
+
+h3 {
+  font-size: 1.75rem; /* 28px */
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1.5rem; /* 24px */
+  transform: scaleY(1);
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.5rem;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1rem; /* 16px */  
+}
+
+p {
+  font-size: 1rem; /* 16px */
+  line-height: 1.6; /* Adjust line-height for readability */
+}
+
 
 /* Header Styles */
 .logo {
@@ -19,57 +92,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #000; /* Logo color */
 }
 
-
-/* Home Page Styles */
-
-.intro-description {
-  font-size: 24px;
-  font-weight: 300; /* Lighter weight for description */
-  color: #777; /* Description color */
-}
-
-.work-section-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #444; /* Work section title color */
-}
-
-.project-domain {
-  font-size: 20px;
-  font-weight: 500; /* Semi-bold for project domain titles */
-  color: #666; /* Project domain color */
-}
-
-.about-section {
-  font-size: 18px;
-  color: #555; /* About section text color */
-}
-
-/* Project Page Styles */
-.project-title {
-  font-size: 40px;
-  font-weight: bold;
-  color: #222; /* Project title color */
-}
-
-.project-info {
-  font-size: 18px;
-  font-weight: 300; /* Lighter weight for project info */
-  color: #777; /* Project info color */
-}
-
-.project-description {
-  font-size: 20px;
-  color: #555; /* Project description color */
-}
-
-.project-media-title {
-  font-size: 24px;
-  font-weight: 500; /* Semi-bold for media titles */
-  color: #666; /* Media title color */
-}
-
-.project-text {
-  font-size: 18px;
-  color: #555; /* General project text color */
+.text-size-1-5rem {
+  font-size: 1.5rem !important;
 }

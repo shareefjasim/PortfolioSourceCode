@@ -3,7 +3,7 @@ const projects = [
       title: "ECHO",
       description: "Sinop,Turkey",
       mediaType: "image",
-      mediaSrc: "/projects/ECHO/images/Arch System.png",
+      mediaSrc: "/projects/ECHO/images/Arch System-logo.png",
       targetUrl: "/ECHO",
       categories: ["Architecture"]
     },
@@ -12,8 +12,8 @@ const projects = [
       title: "4D Droplets Clash",
       description: "Basic Abstraction Design",
       mediaType: "image",
-      mediaSrc: "/projects/4D Droplets Clash/images/mix 1t.jpg",
-      targetUrl: "/4D Droplets Clash",
+      mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
+      targetUrl: "/Droplets Clash",
       categories: ["Abstract Art"]
     },
     
@@ -89,7 +89,6 @@ const projects = [
       targetUrl: "/WEAVE",
       categories: ["Architecture"]
     }
-    // ... add any other projects here
   ];
   
   export default projects;

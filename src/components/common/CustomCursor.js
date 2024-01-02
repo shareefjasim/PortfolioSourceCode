@@ -71,7 +71,7 @@ const CustomCursor = () => {
       });
     };
 
-    const links = document.querySelectorAll('a, [role="button"], img.cursor-hover, .menu-item');
+    const links = document.querySelectorAll('a, [role="button"], img.cursor-hover, .card, .menu-item');
     links.forEach(link => {
       link.addEventListener('mouseover', handleLinkHover);
       link.addEventListener('mouseout', handleLinkOut);

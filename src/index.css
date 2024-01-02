@@ -13,3 +13,14 @@ body {
 body, a, a:hover {
   cursor: none !important;
 }
+
+
+/* Hide default scrollbar */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
-import HomePage from "./pages/HomePage";
 import CustomCursor from './components/common/CustomCursor.js';
+
+import HomePage from "./pages/HomePage";
 import EchoPage from './pages/ECHO.js';
 import CowesWeekPavilionPage from './pages/CowesWeekPavilion.js';
 import DropletsClashPage from './pages/Droplets Clash.js';
@@ -17,6 +18,7 @@ import WEAVEPage from './pages/WEAVE.js';
 import './App.css';
 import projects from './components/projects/projectsData';
 import LoadingComponent from './components/common/LoadingComponent.js';
+import CustomScrollbar from './components/common/CustomScrollbar.js';
 
 
 
@@ -41,6 +43,7 @@ function App() {
 
 
 
+
 return (
   <div className="App dark:bg-black dark:text-white">
     <Router>
@@ -57,7 +60,7 @@ return (
           <Route path="/" element={<HomePage />} />
           <Route path="/ECHO" element={<EchoPage />} />
           <Route path="/cowes-week-pavilion" element={<CowesWeekPavilionPage />} />
-          <Route path="/4D Droplets Clash" element={<DropletsClashPage />} />
+          <Route path="/Droplets Clash" element={<DropletsClashPage />} />
           <Route path="/local-facade-geometries" element={<LocalFacadePage />} />
           <Route path="/four-seasons-facade" element={<FourSeasonsFacadePage />} />
           <Route path="/Cliff Youth Center" element={<CliffYouthCenterPage />} />

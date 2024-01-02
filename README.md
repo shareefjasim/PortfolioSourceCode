@@ -2,6 +2,17 @@ To build and deploy the website:
 - cd scripts
 - .\deploy.ps1
 
+TODO:
+- Page Transition
+- Cards redesign for better interactivity no glitch and swing on scroll
+- Adjust Scrollbar more for phone 
+
+
+
+Projects needed materials:
+-ECHO Renders with twinmotion
+
+
 
 # Getting Started with Create React App
 
