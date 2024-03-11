@@ -72,10 +72,10 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
       transition-all duration-500 ease-in-out`}>
 
 
-      <a href="#workSection" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl">
+      <a href="workSection" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl">
         WORK
       </a>
-      <Link to="/about" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl ">
+      <Link to="/About" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[270px] px-3 h-6 leading-6 text-2xl ">
         ABOUT
       </Link>
       <a>

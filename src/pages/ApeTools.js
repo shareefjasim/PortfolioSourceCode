@@ -1,12 +1,12 @@
-// ApeToolsPage.js
+// APEToolsPage.js
 import React from 'react';
 
-const ApeToolsPage = () => {
+const APEToolsPage = () => {
   return (
     <div>
-      <h1>Ape Tools</h1>
+      <h1>APE Tools</h1>
     </div>
   );
 };
 
-export default ApeToolsPage;
+export default APEToolsPage;

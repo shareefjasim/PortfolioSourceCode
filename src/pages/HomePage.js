@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import BackgroundGif from "../assets/Home.gif";
@@ -11,6 +12,22 @@ import FilterButton from '../components/home/FilterButton';
 
 function HomePage() {
 
+  const location = useLocation();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const section = queryParams.get('section');
+    if (section) {
+      const element = document.getElementById(section);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
+
+
+
   const [currentFilter, setCurrentFilter] = useState("All Projects");
   const categories = ["All Projects", "Architecture", "Computational Design", "Abstract Art", "Software Development", "Web Development"];
   const filteredProjects = projects.filter(project =>
@@ -18,6 +35,9 @@ function HomePage() {
   );
 
   const renderCardContent = (cardData) => {
+    // Determine whether to invert the image in dark mode
+    const invertInDarkMode = cardData.invert === true;
+
     if (cardData.mediaType === 'image') {
       return (
         <img src={cardData.mediaSrc} alt={cardData.imageAlt || 'Card Image'} className="max-w-full max-h-full object-contain object-center" 
@@ -52,17 +72,17 @@ function HomePage() {
         alt="Descriptive alt text" 
         className="w-screen h-screen object-cover lg:object-contain lg:object-center dark:invert"
       />
-
+<div id="workSection" className="sticky top-6 z-50">
       <FilterButton
         categories={categories}
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}        
       />
-
+</div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-x-18 gap-y-18 px-6 md:px-18 mt-18   ">
         {filteredProjects.map(project => (
-          <div key={project.title} className="object-center object-contain">
-            <Card targetUrl={`#${project.targetUrl}`} mediaType={project.mediaType}>
+          <div key={project.title} className="object-center  object-contain">
+            <Card targetUrl={`#${project.targetUrl}`} mediaType={project.mediaType} invertInDarkMode={project.invert || false}>
               {renderCardContent(project)}
             </Card>
             <h1 className="mt-6 text-center ">{project.title}</h1>

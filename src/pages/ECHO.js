@@ -4,9 +4,9 @@ import CustomizableCarousel from '../components/common/CustomizableCarousel';
 const EchoPage = () => {
 
 
-  // useEffect(() => {
-  //    window.scrollTo(0, 0);
-  // },[]);
+  useEffect(() => {
+     window.scrollTo(0, 0);
+  },[]);
 
   const images = [
     "/projects/ECHO/images/1st diag Pothoshoped.png",
@@ -291,11 +291,11 @@ sustainable marine ecology, a Rehabilitation Center for rescuing endangered anim
         <h2 className="bg-black dark:bg-white text-white dark:text-black lg:text-size1-5rem lg:leading-custom px-1 h-6 ">
         Renderings and Visualizations
         </h2>
-      </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-18 mb-18">
             <img src="/projects/ECHO/images/r31light.png" alt="Exterior Architecture Render with Lighting" className="w-full h-auto" />
             <img src="/projects/ECHO/images/ri2.png" alt="Interior Architecture Render" className="w-full h-auto" />
-      </div>       
+        </div>       
 
 
         

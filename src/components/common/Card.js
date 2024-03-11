@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 
-const Card = ({ children, targetUrl, mediaType }) => {
+const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -38,7 +38,8 @@ const Card = ({ children, targetUrl, mediaType }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
         className={`${mediaType === '3dmodel' ? '3d-model-class' : ''} 
-        shadow-custom dark:shadow-customDark`}
+        ${invertInDarkMode ? 'dark:invert' : ''}
+        shadow-none dark:shadow-none hover:shadow-custom hover:dark:shadow-customDark`}
 
         style={{ 
         width: '100%', 

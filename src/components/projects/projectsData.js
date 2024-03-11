@@ -7,7 +7,15 @@ const projects = [
       targetUrl: "/ECHO",
       categories: ["Architecture"]
     },
-
+    {
+      title: "Four Seasons Facade",
+      description: "Dubai,UAE",
+      mediaType: "image",
+      mediaSrc: "/projects/Four Seasons Facade System/images/diagram 11-Photoshopped.png",
+      targetUrl: "/FourSeasonsFacade",
+      categories: ["Architecture"],
+      invert: true
+    },
     {
       title: "4D Droplets Clash",
       description: "Basic Abstraction Design",
@@ -16,7 +24,6 @@ const projects = [
       targetUrl: "/Droplets Clash",
       categories: ["Abstract Art"]
     },
-    
     {
       title: "Bubble Cube",
       description: "Basic Abstraction Design",
@@ -38,7 +45,7 @@ const projects = [
       description: "Description of Cowes Week Pavilion",
       mediaType: "image",
       mediaSrc: "/projects/Cowes Week Pavilion/images/robot 2.png",
-      targetUrl: "Cowes Week Pavilion",
+      targetUrl: "CowesWeekPavilion",
       categories: ["Computational Design","Architecture"]
     },
     {
@@ -46,39 +53,32 @@ const projects = [
       description: "GENx Facade Solution",
       mediaType: "image",
       mediaSrc: "/projects/GENx Facade Solution/images/combined.jpg",
-      targetUrl: "/local-facade-geometries",
+      targetUrl: "/GENxFacadeSolution",
       categories: ["Computational Design","Software Development"]
     },
-    {
-      title: "Four Seasons Facade",
-      description: "Description of Four Seasons Facade",
-      mediaType: "image",
-      mediaSrc: "/projects/Four Seasons Facade System/images/ms5-Photoshopped edited.png",
-      targetUrl: "/Four Seasons Facade",
-      categories: ["Architecture"]
-    },
+    
     {
       title: "Cliff Youth Center",
       description: "Description of Cliff Youth Center",
       mediaType: "image",
-      mediaSrc: "/projects/Cliff Youth Center/images/Image10.png",
-      targetUrl: "/Cliff Youth Center",
+      mediaSrc: "/projects/Cliff Youth Center/images/ArchSystemIcon.png",
+      targetUrl: "/CliffYouthCenter",
       categories: ["Architecture"]
     },
     {
-      title: "Venue Building Silt",
+      title: "SILT Middelkerke",
       description: "Middelkerke, Belgium",
       mediaType: "image",
-      mediaSrc: "/path/to/venue-building-silt-image.jpg",
-      targetUrl: "/venue-building-silt",
+      mediaSrc: "/projects/SILTMiddelkerke/images/Full/1.png",
+      targetUrl: "/SILTMiddelkerke",
       categories: ["Computational Design"]
     },
     {
-      title: "Ape Tools",
+      title: "APE Tools",
       description: "Description of Ape Tools",
       mediaType: "image",
       mediaSrc: "/path/to/ape-tools-image.jpg",
-      targetUrl: "/ape-tools",
+      targetUrl: "/APETools",
       categories: ["Computational Design", "Software Development"]
     },
     {
@@ -87,9 +87,24 @@ const projects = [
       mediaType: "image",
       mediaSrc: "/projects/WEAVE/images/exploded.jpg",
       targetUrl: "/WEAVE",
-      categories: ["Architecture"]
+      categories: ["Architecture"],
+      invert: true
+    },
+    {
+      title: "VOX Exporter",
+      description: "Direct link to MagicaVoxel through the APE Plugin",
+      mediaType: "image",
+      mediaSrc: "",
+      targetUrl: "/VOXExporter",
+      categories: ["Computational Design","Software Development"]
+    },
+    {
+      title: "CTEP",
+      description: "Modular Robotic System",
+      mediaType: "image",
+      mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
+      targetUrl: "/CTEP",
+      categories: ["Computational Design","Software Development"]
     }
   ];
-  
   export default projects;
-  
