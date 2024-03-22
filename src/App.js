@@ -43,21 +43,30 @@ function App() {
   );
 
   const [loading, setLoading] = useState(true);
-
+  const [showCursor, setShowCursor] = useState(false); // For CustomCursor
+ 
+  
   useEffect(() => {
-    // Example: simulate loading time
-    const timer = setTimeout(() => setLoading(false), 3200);
-    return () => clearTimeout(timer);
+    // Simulate loading time for demonstration
+   
+    // Separate timer for CustomCursor to appear after 2 seconds
+    const cursorTimer = setTimeout(() => {
+      setShowCursor(true);
+    }, 1950);
+
+    // Cleanup function
+    return () => {
+      
+      clearTimeout(cursorTimer);
+    };
   }, []);
+  
 
   return (
     <div className="App dark:bg-black dark:text-white">
       <Router>
-        {loading ? (
-          <LoadingComponent />
-        ) : (
-          <>
-            <CustomCursor />
+      {loading && <LoadingComponent />}
+        {showCursor && <CustomCursor />}
             <Header
               categories={categories}
               currentFilter={currentFilter}
@@ -122,8 +131,7 @@ function App() {
               />
             </Routes>
             <Footer />
-          </>
-        )}
+         
       </Router>
     </div>
   );

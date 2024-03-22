@@ -6,6 +6,8 @@ TODO:
 - Page Transition
 - Cards redesign for better interactivity no glitch and swing on scroll
 - Adjust Scrollbar more for phone 
+- Edit the Black Squares and icons to have the modern translucent glass material like feel using this (https://www.epicweb.dev/tips creating-glassmorphism-effects-with-tailwind-css)
+- you can also edit this color to be dynamically changing between some soft colors that would sute both light and dark mode 
 
 
 

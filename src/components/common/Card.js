@@ -10,8 +10,8 @@ const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
     const centerX = left + width / 2;
     const centerY = top + height / 2;
-    const deltaX = (e.clientX - centerX) / 100;
-    const deltaY = (e.clientY - centerY) / 100;
+    const deltaX = (e.clientX - centerX) / 40;
+    const deltaY = (e.clientY - centerY) / 40;
 
     gsap.to(cardRef.current, {
       rotationY: deltaX,
@@ -37,9 +37,7 @@ const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-        className={`${mediaType === '3dmodel' ? '3d-model-class' : ''} 
-        ${invertInDarkMode ? 'dark:invert' : ''}
-        shadow-none dark:shadow-none hover:shadow-custom hover:dark:shadow-customDark`}
+        className={`shadow-none dark:shadow-none hover:shadow-custom hover:dark:shadow-customDark`}
 
         style={{ 
         width: '100%', 
@@ -51,7 +49,7 @@ const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
         color: 'inherit' // optional, ensures text color matches your design
       }}
     >
-      <div className="menu-item absolute inset-0 flex justify-center items-center">
+      <div className={`menu-item absolute inset-0 flex justify-center items-center ${invertInDarkMode ? 'dark:invert' : ''}`}>
         {children}
       </div>
     </a>

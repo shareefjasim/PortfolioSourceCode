@@ -1,72 +1,106 @@
-// About.js
 import React from "react";
 
 const AboutPage = () => {
+  const cvLink = "/General/Shareef Jasim _ Resume.pdf";
+
   return (
-    <div className="px-6 lg:px-18 mt-18 mb-18">
-      <div className="grid lg:grid-cols-3 gap-18">
-        {/* First Column: Profile and Contact Information */}
-        <div className="flex flex-col items-center lg:items-start">
-          {/* Replace 'profileImage.jpg' with your actual profile image path */}
-          <img
-            src="/General/DSC_8618.JPG"
-            alt="Profile"
-            className="w-50 h-80 content-center mb-4"
-          />
-          <h2 className="text-2xl font-semibold mb-2">Profile</h2>
+    <div className="px-6 lg:px-18 mt-18 overflow-auto">
+      <div className="grid lg:grid-cols-3 gap-6 lg:gap-18">
+        {/* Combined column for Image and PDF Resume for all sizes */}
+        <div className="grid grid-cols-2 mb-6 gap-6">
+          {/* Sub-column for the Image */}
+          <div className="flex flex-col items-center lg:items-start">
+            <img
+              src="/General/DSC_8618 cropped resized.jpg"
+              alt="Profile"
+              className="lg:h-full w-auto"
+            />
+          </div>
+          {/* Sub-column for the PDF Resume */}
+          <div className="flex flex-col items-center lg:items-start justify-end lg:h-full">
+            <a
+              href={cvLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              role="button"
+              className="bg-black dark:bg-white text-white dark:text-black px-1 h-6 lg:mt-0 self-end"
+            >
+              Pdf Resume
+            </a>
+          </div>
+        </div>
+
+        {/* Empty divs for spacing in the first row */}
+        <div className="hidden lg:block lg:col-span-1"></div>
+        <div className="hidden lg:block lg:col-span-1"></div>
+      </div>
+
+      {/* Second Row on large screens */}
+      <div className="grid lg:grid-cols-3 gap-6 lg:gap-18">
+        {/* Profile Section */}
+        <div className="flex flex-col items-center lg:items-start lg:col-span-1">
           <p className="text-justify">
-            Highly skilled and detail-oriented architect and computational designer with a passion for utilizing technology to enhance architectural design workflow. Strong technical skills in parametric design, programming, and algorithm design. Experienced in applying emerging technologies in professional environments.
+            Highly skilled and detail-oriented architect and computational designer with a passion for utilizing technology to enhance architectural design workflow and push the boundaries of design and execution. Strongly committed to professionalism with a proven ability to meet work requirements and to conduct in-depth research and development utilizing emerging technologies. Possessing strong technical skills, including expertise in parametric design, programming, and algorithm design.
           </p>
         </div>
 
-        {/* Second Column: Experience and Education */}
-        <div className="lg:col-span-1">
-          <h3 className="text-xl font-semibold mb-2">Experience</h3>
+        {/* Experience and Education Section */}
+        <div className="flex flex-col lg:col-span-1">
+          <div className="text-lg font-semibold mb-2">Experience & Education</div>
+
+          {/* Computational Designer Experience */}
           <div>
-            <h4 className="font-semibold">Computational Designer</h4>
-            <p>Rhenso - Imagine Computation, Frankfurt, Germany (02/2023 - Present)</p>
+            <div className="font-medium">Computational Designer</div>
+            <p>Imagine Computation, Frankfurt, Germany (06/2023 - Present)</p>
             <ul className="list-disc ml-5">
-              <li>Developed tools for Rhino users via Grasshopper and APE plugin.</li>
-              <li>Assisted in custom Grasshopper components for APE plugin using C#.</li>
-              <li>Integrated process for timber facade production for the Venue Building SILT.</li>
+              <li>Developed an integrated process to produce fabrication and assembly data for the timber facade of the Venue Building SILT, Middelkerke, designed by ZJA Architects and fabricated by Hess Timber.</li>
+              <li>Assisted in developing a custom Rhino plugin that allows users to easily manipulate object attributes with a smart UI.</li>
             </ul>
           </div>
+
+          {/* Previous Computational Designer Experience */}
           <div>
-            <h4 className="font-semibold">Computational Designer</h4>
+            <div className="font-medium">Computational Designer</div>
+            <p>Rhenso (a subsidiary of Imagine Computation), Frankfurt, Germany (02/2023 - 06/2023)</p>
+            <ul className="list-disc ml-5">
+              <li>Ideated and developed multiple tools for Rhino users through Grasshopper and the APE plugin.</li>
+              <li>Assisted in the development of custom Grasshopper components to be integrated into the APE plugin using C#.</li>
+            </ul>
+          </div>
+
+          {/* Additional Experience */}
+          <div>
+            <div className="font-medium">Computational Designer</div>
             <p>GenX Design and Technology, New Jersey, USA (06/2020 - 05/2021)</p>
             <ul className="list-disc ml-5">
-              <li>Developed data-driven workflows using Grasshopper and Catia for facade detailing.</li>
-              <li>Programmed a local facade panel detailing algorithm for complex geometries.</li>
+              <li>Developed a seamless data-driven workflow using Grasshopper, Catia, xGenerative, and EKL to apply advanced computational concepts for facade detailing and fabrication documents production.</li>
+              <li>Designed and programmed a local facade panel detailing algorithm used for feasibility testing of complex facade geometry by automatically producing 3D fabrication documents for any panel of a complex facade.</li>
             </ul>
           </div>
+
+          {/* Education Details */}
           <div>
-            <h4 className="font-semibold">Full-Stack Developer (Freelancing)</h4>
-            <p>(01/2022 - Present)</p>
-            <ul className="list-disc ml-5">
-              <li>Developed e-commerce web applications using Django and React.</li>
-              <li>Managed entire development lifecycle from concept to deployment.</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold">Software Developer</h4>
-            <p>Watches House, Erbil, Iraq (06/2021 - 09/2022)</p>
-            <ul className="list-disc ml-5">
-              <li>Developed inventory system and e-commerce integration using Django.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mt-4 mb-2">Education</h3>
-            <p>Bachelor of Architecture - Bilkent University, Ankara, Turkey (09/2016 - 06/2020)</p>
+            <div className="font-medium">Bachelor of Architecture</div>
+            <p>
+              <a
+                href="https://w3.bilkent.edu.tr/bilkent/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-500"
+              >
+                Bilkent University
+              </a>, Ankara, Turkey (09/2016 - 06/2020)
+            </p>
           </div>
         </div>
 
-        {/* Third Column: Skills, Languages, and Participations */}
-        <div className="lg:col-span-1 mb-18">
-          <h3 className="text-xl font-semibold mb-2">Skills</h3>
-          <p>Rhino, Revit, Catia, Fusion360, Autocad, Twinmotion, Lumion, Photoshop, Indesign, Premiere Pro, Grasshopper, Dynamo, XGenerative, C#, EKL, Python, SLA Printing, PLA Printing, Hand Modeling, Web Development (Django, React, Bootstrap, Tailwind), Languages (English, Arabic, Turkish).</p>
-          
-          <h3 className="text-xl font-semibold mt-4 mb-2">Participations and Leadership</h3>
-          <ul className="list-disc ml-5 mb-18">
+        {/* Skills and Participation Section */}
+        <div className="flex flex-col lg:col-span-1">
+          <div className="text-lg font-semibold mb-2">Skills & Participations</div>
+          <p>
+            Modeling: Rhino, Revit, Catia. Visualization: Twinmotion, Photoshop, Indesign. Visual Programming: Grasshopper, Dynamo, XGenerative. Web-Development: Django, React, Tailwind. Programming languages: C#, EKL, Python. Languages: English, Arabic, Turkish.
+          </p>
+          <ul className="list-disc ml-5">
             <li>AA Visiting School | Urban design summer school.</li>
             <li>Club Alpbach Iraq | Co-founder and board member.</li>
             <li>PADA Labs | Computational Design Workshop.</li>
