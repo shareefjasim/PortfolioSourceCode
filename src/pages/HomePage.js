@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
-import BackgroundVideo from "../assets/Frame__0.webm"; // Adjust the import path as needed
+import BackgroundVideo from "../assets/Frame__0_3.mp4"; // Adjust the import path as needed
 
 import RowFullScreen from "../components/common/RowFullScreen";
 import Card from "../components/common/Card"; // Adjust the import path as needed
@@ -76,9 +76,14 @@ function HomePage() {
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}
       />
-<video autoPlay loop muted className="w-screen h-screen  object-cover lg:object-contain lg:object-cent">
-    <source src={BackgroundVideo} type="video/webm" />
-</video>
+<div className="relative w-screen h-screen">
+    <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
+        <source src={BackgroundVideo} type="video/webm" />
+        {/* Fallback content */}
+        Your browser does not support the video tag.
+    </video>
+    <div className="absolute w-screen h-screen top-0 left-0 bg-gray-700 bg-opacity-50"></div>
+</div>
 
       <div className="sticky z-30 top-6"></div>
 
@@ -89,7 +94,7 @@ function HomePage() {
           onFilterChange={setCurrentFilter}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-36 gap-y-18 px-6 md:px-18 mt-18">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-18 lg:gap-x-36 gap-y-18 px-6 md:px-18 mt-18">
         {filteredProjects.map((project) => (
           <div key={project.title} className="object-center  object-contain">
             <Card
