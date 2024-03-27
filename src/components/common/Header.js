@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from '../../assets/icons/logoSJ 24th 3 2024.png';
+import logoImage from '../../assets/icons/logoSJ 24th 3 2024.svg';
 import darkModeIcon from '../../assets/icons/darkmode.jpg';
 
 

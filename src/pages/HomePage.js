@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
-import BackgroundVideo from "../assets/Frame__0_3.mp4"; // Adjust the import path as needed
+import BackgroundVideo1 from "../assets/Frame__0.webm"; // Adjust the import path as needed
+import BackgroundVideoBlack from "../assets/SILT ZOMMED Black.mp4";
+import BackgroundVideoWhite from "../assets/SILT ZOMMED White.mp4";
+
 
 import RowFullScreen from "../components/common/RowFullScreen";
 import Card from "../components/common/Card"; // Adjust the import path as needed
@@ -10,6 +13,8 @@ import GLTFViewer from "../components/common/GLTFViewer"; // Update the path as 
 
 import projects from "../components/projects/projectsData";
 import FilterButton from "../components/home/FilterButton";
+
+import { useTheme } from '../components/common/ThemeContext';
 
 function HomePage() {
   const location = useLocation();
@@ -69,6 +74,14 @@ function HomePage() {
     }
   };
 
+
+
+    // const { theme } = useTheme(); // Use the theme context
+  
+    // // Determine which video to use based on the theme
+    // const videoSource = theme === "dark" ? BackgroundVideoBlack : BackgroundVideoWhite;
+
+
   return (
     <div className="z-10">
       <Header
@@ -77,15 +90,31 @@ function HomePage() {
         onFilterChange={setCurrentFilter}
       />
 <div className="relative w-screen h-screen">
-    <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
-        <source src={BackgroundVideo} type="video/webm" />
+
+
+ <div className="z-0 dark:z-10 absolute w-screen h-screen">
+      <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
+        <source src={BackgroundVideoBlack} type="video/mp4" />
         {/* Fallback content */}
         Your browser does not support the video tag.
-    </video>
-    <div className="absolute w-screen h-screen top-0 left-0 bg-gray-700 bg-opacity-50"></div>
+      </video>
+    </div>
+
+    <div className="z-10 dark:hidden absolute w-screen h-screen">
+      <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
+        <source src={BackgroundVideoWhite} type="video/mp4" />
+        {/* Fallback content */}
+        Your browser does not support the video tag.
+      </video>
+    </div>
 </div>
 
+
+<br></br>
+<br></br>
       <div className="sticky z-30 top-6"></div>
+
+
 
       <div id="workSection" className="sticky z-30 top-6">
         <FilterButton
