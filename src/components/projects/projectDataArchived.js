@@ -15,4 +15,37 @@ const projects = [
     targetUrl: "/4d-droplets-clash",
     categories: ["Computational Deisgn", "Art"],
   },
+  {
+    title: "CTEP",
+    description: "Modular Robotic System",
+    mediaType: "image",
+    mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
+    targetUrl: "/CTEP",
+    categories: ["Computational Design", "Software Development"],
+  },
+  {
+    title: "VOX Exporter",
+    description: "Direct link to MagicaVoxel through the APE Plugin",
+    mediaType: "image",
+    mediaSrc: "",
+    targetUrl: "/VOXExporter",
+    categories: ["Computational Design", "Software Development"],
+  }, 
+  {
+    title: "4D Droplets Clash",
+    description: "Basic Abstraction Design",
+    mediaType: "image",
+    mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
+    targetUrl: "/Droplets Clash",
+    categories: ["Abstract Art"],
+    invert: true,
+  }, Jk!2213sSwww1
+  {
+    title: "APE Tools",
+    description: "Description of Ape Tools",
+    mediaType: "image",
+    mediaSrc: "/path/to/ape-tools-image.jpg",
+    targetUrl: "/APETools",
+    categories: ["Computational Design", "Software Development"],
+  },
 ]

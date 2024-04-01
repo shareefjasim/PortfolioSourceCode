@@ -33,7 +33,9 @@ module.exports = {
         custom: '1.4',
       },
 
-      
+      maxHeight: {
+        '1/5': '20%', // Adding a custom utility for max-height: 20%
+      },      
 
     
 

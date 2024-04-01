@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
-import BackgroundVideo1 from "../assets/Frame__0.webm"; // Adjust the import path as needed
-import BackgroundVideoBlack from "../assets/SILT ZOMMED Black.mp4";
-import BackgroundVideoWhite from "../assets/SILT ZOMMED White.mp4";
+// import BackgroundVideoBlack from "../assets/SILT ZOMMED Black.mp4";
+// import BackgroundVideoWhite from "../assets/SILT ZOMMED White.mp4";
+// import BackgroundVideoBlackHR from "../assets/SILT ZOMMED Black.mp4";
+// import BackgroundVideoWhiteHR from "../assets/SILT ZOMMED White HIGH RES.mp4";
+
+// import BackgroundVideoWhite4K from "../assets/SILT ZOMMED White 4K.mp4";
+// import BackgroundVideoWhiteTR from "../assets/TRIAL.mp4";
+// import BackgroundVideoWhiteTR2 from "../assets/TRIAL2.mp4";
+// import BackgroundVideoWhiteTR3 from "../assets/TRIAL3.mp4";
+// import BackgroundVideoWhiteTR4 from "../assets/TRIAL4.mp4";
+
+
+import BackgroundVideoWhiteZoomed from "../assets/SILT Slow Animation White.mp4";
+import BackgroundVideoBlackZoomed from "../assets/SILT Slow Animation Black.mp4";
+
+
+
+
+
+
 
 
 import RowFullScreen from "../components/common/RowFullScreen";
@@ -15,6 +32,36 @@ import projects from "../components/projects/projectsData";
 import FilterButton from "../components/home/FilterButton";
 
 import { useTheme } from '../components/common/ThemeContext';
+
+
+
+// import Frame0 from '../assets/Frame_0.png';
+// import Frame3 from '../assets/3Frame_0.png';
+// import Frame5 from '../assets/56Frame_0.png';
+// import Frame6 from '../assets/57Frame_0.png';
+// import Frame7 from '../assets/58Frame_0.png';
+// import Frame8 from '../assets/59Frame_0.png';
+// import Frame60 from '../assets/60Frame_0.png';
+// import Frame61 from '../assets/61Frame_0.png';
+// import Frame62 from '../assets/62Frame_0.png';
+// import Frame63 from '../assets/63Frame_0.png';
+// import Frame631 from '../assets/631Frame_0.png';
+// import Frame632 from '../assets/632Frame_0.png';
+// import Frame633 from '../assets/654Frame_0.png';////////////////////
+
+
+//import Frame63 from '../assets/63Frame_0.png';
+//import Frame63 from '../assets/63Frame_0.png';
+
+//import Frame64 from '../assets/64Frame_0.png';
+//import Frame65 from '../assets/65Frame_0.png';
+//import Frame66 from '../assets/66Frame_0.png';
+//import Frame67 from '../assets/67Frame_0.png';
+
+
+
+
+
 
 function HomePage() {
   const location = useLocation();
@@ -75,7 +122,35 @@ function HomePage() {
   };
 
 
+   // Video references
+   const videoRefBlack = useRef(null);
+   const videoRefWhite = useRef(null);
+ 
+   // Rest of your component logic...
+ 
+   const togglePlayPause = (videoRef) => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
 
+   useEffect(() => {
+     // Delayed video start
+     const timer = setTimeout(() => {
+       if (videoRefBlack.current) {
+         videoRefBlack.current.play();
+       }
+       if (videoRefWhite.current) {
+         videoRefWhite.current.play();
+       }
+     }, 1500); // Delay in milliseconds
+ 
+     return () => clearTimeout(timer); // Cleanup the timer
+   }, []);
     // const { theme } = useTheme(); // Use the theme context
   
     // // Determine which video to use based on the theme
@@ -89,25 +164,27 @@ function HomePage() {
         currentFilter={currentFilter}
         onFilterChange={setCurrentFilter}
       />
-<div className="relative w-screen h-screen">
 
+{/* <div className="relative w-screen h-screen">
 
- <div className="z-0 dark:z-10 absolute w-screen h-screen">
-      <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
-        <source src={BackgroundVideoBlack} type="video/mp4" />
-        {/* Fallback content */}
-        Your browser does not support the video tag.
-      </video>
+<img src={Frame633} alt="Frame 0" /> /////////////////////////////////////////////////////////////
+</div> */}
+
+ <div className="relative w-screen h-screen">
+      <div className="z-0 dark:z-10 absolute w-screen h-screen">
+        <video ref={videoRefBlack} onClick={() => togglePlayPause(videoRefBlack)} loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
+          <source src={BackgroundVideoBlackZoomed} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div className="z-10 dark:hidden absolute w-screen h-screen">
+        <video ref={videoRefWhite} onClick={() => togglePlayPause(videoRefWhite)} loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
+          <source src={BackgroundVideoWhiteZoomed} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
-
-    <div className="z-10 dark:hidden absolute w-screen h-screen">
-      <video autoPlay loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
-        <source src={BackgroundVideoWhite} type="video/mp4" />
-        {/* Fallback content */}
-        Your browser does not support the video tag.
-      </video>
-    </div>
-</div>
 
 
 <br></br>

@@ -3,7 +3,7 @@ const projects = [
     title: "SILT Middelkerke",
     description: "Middelkerke, Belgium",
     mediaType: "image",
-    mediaSrc: "/projects/SILTMiddelkerke/images/Full/1.png",
+    mediaSrc: "/projects/SILTMiddelkerke/images/AllOutput.png",
     targetUrl: "/SILTMiddelkerke",
     categories: ["Computational Design"],
   },
@@ -25,14 +25,7 @@ const projects = [
     targetUrl: "/ECHO",
     categories: ["Architecture"],
   },
-  {
-    title: "APE Tools",
-    description: "Description of Ape Tools",
-    mediaType: "image",
-    mediaSrc: "/path/to/ape-tools-image.jpg",
-    targetUrl: "/APETools",
-    categories: ["Computational Design", "Software Development"],
-  },
+ 
   {
     title: "Cliff Youth Center",
     description: "Description of Cliff Youth Center",
@@ -41,15 +34,7 @@ const projects = [
     targetUrl: "/CliffYouthCenter",
     categories: ["Architecture"],
   },
-  {
-    title: "4D Droplets Clash",
-    description: "Basic Abstraction Design",
-    mediaType: "image",
-    mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
-    targetUrl: "/Droplets Clash",
-    categories: ["Abstract Art"],
-    invert: true,
-  },
+ 
   {
     title: "Cowes Week Pavilion",
     description: "Description of Cowes Week Pavilion",
@@ -77,21 +62,7 @@ const projects = [
     categories: ["Architecture"],
     invert: true,
   },
-  {
-    title: "VOX Exporter",
-    description: "Direct link to MagicaVoxel through the APE Plugin",
-    mediaType: "image",
-    mediaSrc: "",
-    targetUrl: "/VOXExporter",
-    categories: ["Computational Design", "Software Development"],
-  },
-  {
-    title: "CTEP",
-    description: "Modular Robotic System",
-    mediaType: "image",
-    mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
-    targetUrl: "/CTEP",
-    categories: ["Computational Design", "Software Development"],
-  },
+ 
+ 
 ];
 export default projects;

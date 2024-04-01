@@ -85,14 +85,14 @@ const CTEPPage = () => {
         </div>
         <div className="w-full mx-auto">
           <CustomizableCarousel
-            images={carouselImages}
-            intervalTime={2500}
-            fadeTime={1200}
+            images={assemblyGIF}
+            intervalTime={200}
+            fadeTime={1}
             containerHeight="450px"
             containerHeightSm="150px" // Height for sm screens
             containerHeightMd="200px" // Height for md screens
             containerHeightLg="400px" // Height for sm screens
-            containerHeightXl="400px" // Height for md screens
+            containerHeightXl="600px" // Height for md screens
             enableDarkMode={false}
             objectFit="cover"
           />
