@@ -5,7 +5,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/SILTMiddelkerke/images/AllOutput.png",
     targetUrl: "/SILTMiddelkerke",
-    categories: ["Computational Design"],
+    categories: ["COMP D"],
   },
   {
     title: "Four Seasons Facade",
@@ -14,7 +14,7 @@ const projects = [
     mediaSrc:
       "/projects/Four Seasons Facade System/images/diagram 11-Photoshopped.png",
     targetUrl: "/FourSeasonsFacade",
-    categories: ["Architecture"],
+    categories: ["ARCH", "COMP D"],
     invert: true,
   },
   {
@@ -23,7 +23,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/ECHO/images/Arch System-logo.png",
     targetUrl: "/ECHO",
-    categories: ["Architecture"],
+    categories: ["ARCH"],
   },
  
   {
@@ -32,7 +32,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Cliff Youth Center/images/ArchSystemIcon.png",
     targetUrl: "/CliffYouthCenter",
-    categories: ["Architecture"],
+    categories: ["ARCH"],
   },
  
   {
@@ -41,7 +41,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Cowes Week Pavilion/images/robot 2.png",
     targetUrl: "CowesWeekPavilion",
-    categories: ["Computational Design", "Architecture"],
+    categories: ["ARCH", "COMP D"]
   },
   {
     title: "Algorithm for Local Facade Geometries",
@@ -49,7 +49,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/GENx Facade Solution/images/combined.jpg",
     targetUrl: "/GENxFacadeSolution",
-    categories: ["Computational Design", "Software Development"],
+    categories: ["COMP D", "CODE"],
     invert: true,
   },
 
@@ -59,8 +59,57 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/WEAVE/images/exploded.jpg",
     targetUrl: "/WEAVE",
-    categories: ["Architecture"],
+    categories: ["ARCH"],
     invert: true,
+  },
+  {
+    title: "Bubble Cube",
+    description: "Basic Abstraction Design",
+    mediaType: "3dmodel",
+    mediaSrc: "/MYFILE.glb",
+    cameraType: "perspective",
+    cameraPosition: [250, 250, 250],
+    cameraLookAt: [0, 0, 0],
+    ambientIntensity: 400,
+    directionalLightPosition: [5, 10, 5],
+    directionalLightTarget: [0, 0, 0],
+    directionalLightIntensity: 1,
+    allowPan: false,
+    targetUrl: "/4d-droplets-clash",
+    categories: ["COMP D"],
+  },
+  {
+    title: "CTEP",
+    description: "Modular Robotic System",
+    mediaType: "image",
+    mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
+    targetUrl: "/CTEP",
+    categories: ["PRODUCT"],
+  },
+  {
+    title: "VOX Exporter",
+    description: "Direct link to MagicaVoxel through the APE Plugin",
+    mediaType: "image",
+    mediaSrc: "",
+    targetUrl: "/VOXExporter",
+    categories: ["COMP D", "CODE"],
+  }, 
+  {
+    title: "4D Droplets Clash",
+    description: "Basic Abstraction Design",
+    mediaType: "image",
+    mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
+    targetUrl: "/Droplets Clash",
+    categories: ["OTHER"],
+    invert: true,
+  },
+  {
+    title: "APE Tools",
+    description: "Description of Ape Tools",
+    mediaType: "image",
+    mediaSrc: "/path/to/ape-tools-image.jpg",
+    targetUrl: "/APETools",
+    categories: ["COMP D", "CODE"],
   },
  
  

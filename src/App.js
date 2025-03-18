@@ -5,6 +5,11 @@ import Footer from "./components/common/Footer";
 import CustomCursor from "./components/common/CustomCursor.js";
 
 import HomePage from "./pages/HomePage";
+import HomePageV2 from "./pages/HomePageV2";
+import HomePageV3 from "./pages/HomePageV3";
+import HomePageV4 from "./pages/HomePageV4";
+import HomePageV5 from "./pages/HomePageV5";
+
 import AboutPage from "./pages/About.js";
 import EchoPage from "./pages/ECHO.js";
 import CowesWeekPavilionPage from "./pages/CowesWeekPavilion.js";
@@ -12,11 +17,12 @@ import DropletsClashPage from "./pages/Droplets Clash.js";
 import AlgorithmforLocalFacadeGeometriesPage from "./pages/AlgorithmforLocalFacadeGeometries.js";
 import FourSeasonsFacadePage from "./pages/FourSeasonsFacade.js";
 import CliffYouthCenterPage from "./pages/CliffYouthCenter.js";
-import APEToolsPage from "./pages/APETools.js";
+import APEToolsPage from "./pages/ApeTools.js";
 import WEAVEPage from "./pages/WEAVE.js";
 import SILTMiddelkerkePage from "./pages/SILTMiddelkerke.js";
 import VOXExporterPage from "./pages/VOXExporter.js";
 import CTEPPage from "./pages/CTEP.js";
+
 
 import "./App.css";
 import projects from "./components/projects/projectsData";
@@ -76,6 +82,22 @@ function App() {
               <Route 
               path="/" 
               element={<HomePage />} 
+              /> 
+              <Route 
+              path="/V2" 
+              element={<HomePageV2 />} 
+              /> 
+               <Route 
+              path="/V3" 
+              element={<HomePageV3 />} 
+              /> 
+              <Route 
+              path="/V4" 
+              element={<HomePageV4 />} 
+              /> 
+              <Route 
+              path="/V5" 
+              element={<HomePageV5 />} 
               /> 
                <Route 
               path="/workSection" 

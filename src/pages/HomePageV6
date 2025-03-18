@@ -1,0 +1,245 @@
+import React, { useState, useEffect, useRef } from "react";
+import projectsData from "../components/projects/projectsData";
+import Card from "../components/common/Card"; // Import the Card component
+
+function HomePage() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [gridSize, setGridSize] = useState(0);
+  const containerRef = useRef(null);
+  const gridContainerRef = useRef(null);
+  
+  // Check system preference for dark mode
+  const [darkMode, setDarkMode] = useState(false);
+  
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setDarkMode(mediaQuery.matches);
+    
+    const handler = (e) => setDarkMode(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+  
+  // Control grid dimensions here
+  const numColumns = 3; // 3 columns
+  const visibleRows = 2;  // 2 rows visible initially
+  
+  // Extract unique categories from project data
+  const uniqueCategories = ["ALL PROJECTS"];
+  projectsData.forEach(project => {
+    project.categories.forEach(category => {
+      if (!uniqueCategories.includes(category)) {
+        uniqueCategories.push(category);
+      }
+    });
+  });
+  
+  // Format categories for display
+  const categories = uniqueCategories.map((category, index) => ({
+    id: index === 0 ? "all" : category.replace(/\s+/g, '').toLowerCase(),
+    name: category
+  }));
+  
+  // Group projects by category
+  const projectsByCategory = {
+    all: projectsData
+  };
+  
+  uniqueCategories.forEach(category => {
+    if (category !== "ALL PROJECTS") {
+      const categoryId = category.replace(/\s+/g, '').toLowerCase();
+      projectsByCategory[categoryId] = projectsData.filter(project => 
+        project.categories.includes(category)
+      );
+    }
+  });
+  
+  // Calculate grid size based on available space
+  useEffect(() => {
+    const calculateSize = () => {
+      // Calculate available space
+      const availableHeight = window.innerHeight - 96 * 2; // After top/bottom margins
+      const availableWidth = window.innerWidth - 24 * 2 - 200; // After left margin and category sidebar
+      
+      // Calculate size based on fitting exactly 3 columns and 2 rows
+      const horizontalGaps = numColumns - 1;
+      const verticalGaps = visibleRows - 1;
+      
+      // Calculate cell width from available width
+      const cellWidthFromWidth = (availableWidth - (horizontalGaps * 24)) / numColumns;
+      
+      // Calculate cell height from available height
+      const cellHeightFromHeight = (availableHeight - (verticalGaps * 24)) / visibleRows;
+      
+      // Take the smaller value to ensure cells are square and everything fits
+      const cellSize = Math.min(cellWidthFromWidth, cellHeightFromHeight);
+      
+      setGridSize(cellSize);
+    };
+    
+    calculateSize();
+    window.addEventListener('resize', calculateSize);
+    return () => window.removeEventListener('resize', calculateSize);
+  }, [numColumns, visibleRows]);
+
+  // Handle global scroll to control grid scrolling
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (gridContainerRef.current) {
+        // Prevent default scroll behavior
+        e.preventDefault();
+        
+        // Scroll the grid container
+        gridContainerRef.current.scrollTop += e.deltaY;
+      }
+    };
+    
+    // Add wheel event listener to the whole document
+    document.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      document.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+  
+  // Get all projects for the current category
+  const gridProjects = activeCategory && projectsByCategory[activeCategory] 
+    ? projectsByCategory[activeCategory] 
+    : [];
+
+  // Helper function to check if path is valid and format it correctly
+  const getImageUrl = (project) => {
+    if (!project.mediaSrc) return null;
+    if (project.mediaType === "3dmodel") return null;
+    if (project.mediaSrc.includes('/path/to/')) return null; // Skip placeholder paths
+    
+    // Encode the URI to handle spaces and special characters
+    return process.env.PUBLIC_URL + encodeURI(project.mediaSrc);
+  };
+
+  return (
+    <div className="fixed dark:bg-black inset-0 overflow-hidden">
+      {/* Floating Grid Background */}
+      
+      {/* Blur overlay */}
+      <div 
+        className="absolute inset-0 z-10"
+        style={{ backdropFilter: 'blur(5px)', WebkitBackdropFilter: 'blur(5px)' }}
+      ></div>
+      
+      {/* Categories sidebar */}
+      <div className="fixed left-0 top-0 bottom-0 z-30 flex items-center">
+        <div className="ml-12">
+          {categories.map(category => (
+            <div 
+              key={category.id} 
+              className="mb-6 flex items-center menu-item relative"
+              onClick={() => setActiveCategory(category.id)}
+            >
+              <div 
+                className={`w-[24px] h-[24px] absolute left-0 
+                  ${activeCategory === category.id ? 'bg-black dark:bg-white' : 'bg-transparent'}`}
+              ></div>
+              <span 
+                className="text-sm ml-10 transition-colors text-black dark:text-white"
+              >
+                {category.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Main grid container - fixed position with top/bottom margins */}
+      <div 
+        ref={containerRef}
+        className="fixed z-20 flex items-start justify-center inset-x-0 top-[96px] bottom-[96px]"
+      >
+        {/* Fixed-size grid container with scrolling (hidden scrollbar) */}
+        <div 
+          ref={gridContainerRef}
+          className="overflow-y-auto "
+          style={{ 
+            width: `${(gridSize * numColumns) + (24 * (numColumns - 1)) + 48}px`,
+            height: `${(gridSize * visibleRows) + (24 * (visibleRows - 1))}px`,
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {/* Hide scrollbar for Chrome, Safari, Opera */}
+          <style jsx>{`
+            div::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+          
+          {/* Grid layout */}
+          <div 
+          className="m-0"
+            style={{ 
+              display: 'grid',
+              gridTemplateColumns: `repeat(${numColumns}, 1fr)`,
+              gap: '24px',
+            }}
+          >
+            {gridProjects.map((project) => {
+              const imageUrl = getImageUrl(project);
+              
+              return (
+                <div 
+                  key={project.title}
+                  style={{ width: `${gridSize}px`, height: `${gridSize}px` }}
+                  onMouseEnter={() => setHoveredProject(project)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                >
+                  <Card
+                    targetUrl={project.targetUrl}
+                    mediaType={project.mediaType || 'image'}
+                    invertInDarkMode={project.invertInDarkMode}
+                  >
+                      <div className="w-full border border-cyan-200 dark:border-cyan-800 h-full relative flex justify-center items-center overflow-hidden">
+    {imageUrl ? (
+      <img 
+        src={imageUrl}
+        alt={project.title}
+        className={`max-w-full max-h-full object-contain dark:${project.invert ? 'invert' : ''}`}
+      />
+    
+                      ) : (
+                        <div className="p-4">{project.title}</div>
+                      )}
+                      
+                      {/* Title overlay at bottom */}
+                      <div className="absolute bottom-0 left-0 right-0 p-2 bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80">
+                        <p className="text-black dark:text-white text-sm font-medium truncate">
+                          {project.title}
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+            
+            {/* If there are no projects */}
+            {gridProjects.length === 0 && (
+              <div 
+                className="bg-white dark:bg-gray-800 flex items-center justify-center"
+                style={{ 
+                  width: `${gridSize}px`,
+                  height: `${gridSize}px`,
+                  gridColumn: `1 / span ${numColumns}`
+                }}
+              >
+                <span className="text-black dark:text-white">No projects in this category</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default HomePage;

@@ -42,12 +42,6 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
       <a href="/" target="_blank" rel="noopener noreferrer">
         <img src={logoImage} alt="Logo" className=" cursor-hover fixed top-6 left-6  dark:invert w-12 h-6" />
       </a>
-      <Link to="/" style={{ left:'72px' }} className="fixed top-6 ">
-        <p className="bg-black dark:bg-white text-white dark:text-black px-1 text-[18px] leading-6 h-6">
-          SHAREEF JASIM
-        </p>
-      </Link>
-     
     </div>
 
     {/* Dark Mode Icon */}
@@ -72,14 +66,11 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
       transition-all duration-500 ease-in-out`}>
 
 
-      <a href="workSection" onClick={closeMenu} className="bg-gray dark:bg-white text-white dark:text-black text-center min-w-[290px] px-3 h-6 leading-6 text-2xl">
-        WORK
-      </a>
+
       <Link to="/About" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[290px] px-3 h-6 leading-6 text-2xl ">
         ABOUT
       </Link>
-      <a>
-      </a>
+   
       <a>        
       </a>
       {/* Filter Categories for Mobile */}
@@ -100,12 +91,11 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
 
     {/* Large Screen Navigation */}
     <nav className="hidden lg:flex space-x-6 fixed top-6 right-18">
-      <a href="#workSection" className="bg-black dark:bg-white text-white dark:text-black px-1 h-6">
-        WORK
-      </a>
-      <Link to="/about" className="bg-black dark:bg-white text-white dark:text-black px-1 h-6 ">
-        ABOUT
-      </Link>
+
+    
+      <a href="/about" target="_blank" className="text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      ABOUT
+        </a>
     </nav>
   </div>
 </header>

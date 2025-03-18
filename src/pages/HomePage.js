@@ -1,224 +1,270 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
-// import BackgroundVideoBlack from "../assets/SILT ZOMMED Black.mp4";
-// import BackgroundVideoWhite from "../assets/SILT ZOMMED White.mp4";
-// import BackgroundVideoBlackHR from "../assets/SILT ZOMMED Black.mp4";
-// import BackgroundVideoWhiteHR from "../assets/SILT ZOMMED White HIGH RES.mp4";
+import { Canvas, useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
-// import BackgroundVideoWhite4K from "../assets/SILT ZOMMED White 4K.mp4";
-// import BackgroundVideoWhiteTR from "../assets/TRIAL.mp4";
-// import BackgroundVideoWhiteTR2 from "../assets/TRIAL2.mp4";
-// import BackgroundVideoWhiteTR3 from "../assets/TRIAL3.mp4";
-// import BackgroundVideoWhiteTR4 from "../assets/TRIAL4.mp4";
-
-
-import BackgroundVideoWhiteZoomed from "../assets/SILT Slow Animation White.mp4";
-import BackgroundVideoBlackZoomed from "../assets/SILT Slow Animation Black.mp4";
-
-
-
-
-
-
-
-
-import RowFullScreen from "../components/common/RowFullScreen";
-import Card from "../components/common/Card"; // Adjust the import path as needed
-import GLTFViewer from "../components/common/GLTFViewer"; // Update the path as needed
-
-import projects from "../components/projects/projectsData";
-import FilterButton from "../components/home/FilterButton";
-
-import { useTheme } from '../components/common/ThemeContext';
-
-
-
-// import Frame0 from '../assets/Frame_0.png';
-// import Frame3 from '../assets/3Frame_0.png';
-// import Frame5 from '../assets/56Frame_0.png';
-// import Frame6 from '../assets/57Frame_0.png';
-// import Frame7 from '../assets/58Frame_0.png';
-// import Frame8 from '../assets/59Frame_0.png';
-// import Frame60 from '../assets/60Frame_0.png';
-// import Frame61 from '../assets/61Frame_0.png';
-// import Frame62 from '../assets/62Frame_0.png';
-// import Frame63 from '../assets/63Frame_0.png';
-// import Frame631 from '../assets/631Frame_0.png';
-// import Frame632 from '../assets/632Frame_0.png';
-// import Frame633 from '../assets/654Frame_0.png';////////////////////
-
-
-//import Frame63 from '../assets/63Frame_0.png';
-//import Frame63 from '../assets/63Frame_0.png';
-
-//import Frame64 from '../assets/64Frame_0.png';
-//import Frame65 from '../assets/65Frame_0.png';
-//import Frame66 from '../assets/66Frame_0.png';
-//import Frame67 from '../assets/67Frame_0.png';
-
-
-
-
-
-
-function HomePage() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const section = queryParams.get("section");
-    if (section) {
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [location]);
-
-  const [currentFilter, setCurrentFilter] = useState("All Projects");
-  const categories = [
-    "All Projects",
-    "Computational Design",
-    "Software",
-    "Architecture",
-    "Abstract Art",
-  ]; //Product design, we development , make the filter appear only as abutton and expand into a window when hovering over it on large screens , small screens can sow it only upon a press
-
-  const filteredProjects = projects.filter(
-    (project) =>
-      currentFilter === "All Projects" ||
-      project.categories.includes(currentFilter)
-  );
-
-  const renderCardContent = (cardData) => {
-    // Determine whether to invert the image in dark mode
-    const invertInDarkMode = cardData.invert === true;
-
-    if (cardData.mediaType === "image") {
-      return (
-        <img
-          src={cardData.mediaSrc}
-          alt={cardData.imageAlt || "Card Image"}
-          className="max-w-full max-h-full object-contain object-center"
-        />
-      );
-    } else if (cardData.mediaType === "3dmodel") {
-      return (
-        <GLTFViewer
-          src={cardData.mediaSrc}
-          cameraType={cardData.cameraType}
-          cameraPosition={cardData.cameraPosition}
-          cameraLookAt={cardData.cameraLookAt}
-          ambientIntensity={cardData.ambientIntensity}
-          directionalLightPosition={cardData.directionalLightPosition}
-          directionalLightTarget={cardData.directionalLightTarget}
-          directionalLightIntensity={cardData.directionalLightIntensity}
-          allowPan={cardData.allowPan}
-        />
-      );
-    }
-  };
-
-
-   // Video references
-   const videoRefBlack = useRef(null);
-   const videoRefWhite = useRef(null);
- 
-   // Rest of your component logic...
- 
-   const togglePlayPause = (videoRef) => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  };
-
-   useEffect(() => {
-     // Delayed video start
-     const timer = setTimeout(() => {
-       if (videoRefBlack.current) {
-         videoRefBlack.current.play();
-       }
-       if (videoRefWhite.current) {
-         videoRefWhite.current.play();
-       }
-     }, 1500); // Delay in milliseconds
- 
-     return () => clearTimeout(timer); // Cleanup the timer
-   }, []);
-    // const { theme } = useTheme(); // Use the theme context
+// Individual Cube Component with physics behavior
+// We use React.forwardRef so that parent components can access the cube's ref if needed.
+const Cube = React.forwardRef(({ position, color, speed, mouseX, mouseY, index, cubes }, ref) => {
+  const mesh = useRef();
   
-    // // Determine which video to use based on the theme
-    // const videoSource = theme === "dark" ? BackgroundVideoBlack : BackgroundVideoWhite;
+  // Convert the initial position into a THREE.Vector3 for physics calculations.
+  const initialPosition = useRef(new THREE.Vector3(...position));
+  
+  // Replace the array velocity with a THREE.Vector3 for clarity.
+  const velocity = useRef(new THREE.Vector3(0, 0, 0));
+  
+  // Store the last mouse position to detect actual changes.
+  const lastMousePos = useRef({ x: mouseX, y: mouseY });
+  
+  // Define cube dimensions.
+  const cubeSize = 1 + Math.random() * 0.5;
+  const size = [cubeSize, cubeSize, cubeSize];
 
+  // Initialize the base physics position (separate from any visual ambient offset)
+  useEffect(() => {
+    if (mesh.current) {
+      mesh.current.userData.basePosition = new THREE.Vector3(...position);
+    }
+  }, [position]);
+
+  // Improved collision detection that tests a candidate physics position
+  // without the ambient offset affecting the bounding box.
+  const checkCollisions = (targetPosition, cubeArray) => {
+    if (!cubeArray || !mesh.current) return false;
+    // Temporarily set the mesh to the target position to compute its bounding box.
+    const originalPos = mesh.current.position.clone();
+    mesh.current.position.copy(targetPosition);
+    const thisBox = new THREE.Box3().setFromObject(mesh.current);
+    // Restore the original position.
+    mesh.current.position.copy(originalPos);
+
+    for (let i = 0; i < cubeArray.current.length; i++) {
+      const otherMesh = cubeArray.current[i];
+      if (otherMesh && otherMesh !== mesh.current && otherMesh.geometry) {
+        const otherBox = new THREE.Box3().setFromObject(otherMesh);
+        if (thisBox.intersectsBox(otherBox)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  // useFrame hook runs on every render frame.
+  useFrame((state, delta) => {
+    if (!mesh.current) return;
+    const cube = mesh.current;
+    
+    // Ensure we have a base physics position.
+    if (!cube.userData.basePosition) {
+      cube.userData.basePosition = new THREE.Vector3(...position);
+    }
+    const basePosition = cube.userData.basePosition;
+    // Save the old physics position for collision recovery.
+    const oldBasePosition = basePosition.clone();
+
+    // Update cube rotation (pure ambient rotation, does not affect physics)
+
+
+    // Check if the mouse has moved
+    const mouseHasMoved = mouseX !== lastMousePos.current.x || mouseY !== lastMousePos.current.y;
+    lastMousePos.current = { x: mouseX, y: mouseY };
+
+    // Calculate a gentle force to return the cube toward its initial physics position.
+    const returnForce = new THREE.Vector3()
+      .subVectors(initialPosition.current, basePosition)
+      .multiplyScalar(0.0003);
+
+    // Calculate the mouse repulsion effect.
+    let mouseEffect = new THREE.Vector3(0, 0, 0);
+    if (mouseHasMoved) {
+      // Map mouse position to world coordinates (with reduced influence)
+      const mouseWorldPos = new THREE.Vector3(mouseX * 3, mouseY * 3, 0);
+      const distance = mouseWorldPos.distanceTo(basePosition);
+      if (distance < 8) { // Reduced effective range
+        const direction = new THREE.Vector3().subVectors(basePosition, mouseWorldPos).normalize();
+        // Intensity falls off with the square of the distance (more aggressive falloff)
+        const intensity = 0.003 / (1 + distance * distance * 0.2);
+        const maxEffect = 0.01;
+        mouseEffect = new THREE.Vector3(
+          Math.min(maxEffect, direction.x * intensity),
+          Math.min(maxEffect, direction.y * intensity),
+          Math.min(maxEffect, direction.z * intensity)
+        );
+      }
+    }
+
+    // Update velocity with damping and add the computed forces.
+    velocity.current.multiplyScalar(0.95);
+    velocity.current.add(returnForce);
+    velocity.current.add(mouseEffect);
+    
+    // Cap the maximum velocity to prevent sudden jumps.
+    const maxVel = 0.1;
+    if (velocity.current.length() > maxVel) {
+      velocity.current.setLength(maxVel);
+    }
+    
+    // Update the base physics position using the updated velocity.
+    const physicsStep = velocity.current.clone().multiplyScalar(0.2);
+    basePosition.add(physicsStep);
+
+    // Perform collision detection on the updated base position (without ambient offset).
+    if (cubes && cubes.current && cubes.current.length > 0) {
+      if (checkCollisions(basePosition, cubes)) {
+        // If a collision is detected, revert to the old physics position.
+        cube.userData.basePosition.copy(oldBasePosition);
+        // Apply a gentle bounce by reversing a fraction of the velocity.
+        velocity.current.multiplyScalar(-0.2);
+        basePosition.copy(oldBasePosition);
+      }
+    }
+
+    // Compute a subtle ambient animation offset using the clock (for stable timing).
+    const time = state.clock.getElapsedTime();
+    const ambientOffset = new THREE.Vector3(
+      Math.sin(time + index * 1000) * 0.0002,
+      Math.cos(time + index * 1000) * 0.0002,
+      0
+    );
+
+    // Set the final cube position as the sum of the physics base position and the ambient offset.
+    cube.position.copy(basePosition.clone().add(ambientOffset));
+  });
 
   return (
-    <div className="z-10">
-      <Header
-        categories={categories}
-        currentFilter={currentFilter}
-        onFilterChange={setCurrentFilter}
+    <mesh 
+      ref={(node) => {
+        mesh.current = node;
+        // Forward the ref if provided.
+        if (ref) {
+          if (typeof ref === "function") {
+            ref(node);
+          } else {
+            ref.current = node;
+          }
+        }
+      }}
+      position={position} 
+      castShadow
+      receiveShadow
+    >
+      <boxGeometry args={size} />
+      <meshStandardMaterial 
+        color={color} 
+        metalness={0.7}
+        roughness={0.2}
+        emissive={color}
+        emissiveIntensity={0.1}
       />
+    </mesh>
+  );
+});
 
-{/* <div className="relative w-screen h-screen">
+// Field of multiple cubes
+const CubeField = ({ count = 14, mouseX, mouseY }) => {
+  const cubesRef = useRef([]);
+  const cubes = useRef([]);
+  
+  const cubeElements = [];
+  for (let i = 0; i < count; i++) {
+    // Create a scattered 3D arrangement.
+    const radius = 8 + Math.random() * 5;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI;
+    
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi) * 0.5 - 5; // Offset in z-direction
+    
+    // Generate a pleasing color from a palette.
+    const colors = ['#F0FAFA', '#E0F0F0', '#D0EBEB', '#C0E1E1', '#A8D8D8', '#98DFDF', 
+      '#F0F0F0', '#E8E8E8', '#E0E0E0', '#D8D8D8', '#D0D0D0', '#B0F0F0'];
+    const color = colors[i % colors.length];
+    
+    cubeElements.push(
+      <Cube 
+        key={i}
+        index={i} 
+        position={[x, y, z]} 
+        color={color}
+        speed={0.5}
+        mouseX={mouseX}
+        mouseY={mouseY}
+        cubes={cubes}
+        ref={el => { cubes.current[i] = el; }}
+      />
+    );
+  }
+  
+  return <group ref={cubesRef}>{cubeElements}</group>;
+};
 
-<img src={Frame633} alt="Frame 0" /> /////////////////////////////////////////////////////////////
-</div> */}
-
- <div className="relative w-screen h-screen">
-      <div className="z-0 dark:z-10 absolute w-screen h-screen">
-        <video ref={videoRefBlack} onClick={() => togglePlayPause(videoRefBlack)} loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
-          <source src={BackgroundVideoBlackZoomed} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+function HomePage() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Track mouse position relative to the center of the screen with reduced sensitivity.
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -((e.clientY / window.innerHeight) * 2 - 1);
+      setMousePosition({ x, y });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+  
+  return (
+    <div className="fixed bg-white dark:bg-black inset-0 overflow-hidden">
+      {/* 3D Cubes Scene */}
+      <div className="absolute inset-0">
+        <Canvas 
+          shadows
+          camera={{ position: [0, 0, 15], fov: 60 }}
+          gl={{ antialias: true, alpha: true }}
+        >
+          {/* Theme appropriate fog */}
+          <fog attach="fog" args={['#ffffff', 10, 40]} className="dark:hidden" />
+          <fog attach="fog" args={['#000000', 10, 40]} className="hidden dark:block" />
+          
+          <ambientLight intensity={0.3} />
+          <directionalLight 
+            position={[10, 10, 10]} 
+            intensity={0.8} 
+            castShadow 
+          />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} />
+          <spotLight
+            position={[0, 10, 5]}
+            angle={0.3}
+            penumbra={1}
+            intensity={0.8}
+            castShadow
+          />
+          <CubeField 
+            count={14} 
+            mouseX={mousePosition.x} 
+            mouseY={mousePosition.y} 
+          />
+        </Canvas>
       </div>
-
-      <div className="z-10 dark:hidden absolute w-screen h-screen">
-        <video ref={videoRefWhite} onClick={() => togglePlayPause(videoRefWhite)} loop muted className="w-screen h-screen object-cover absolute top-0 left-0">
-          <source src={BackgroundVideoWhiteZoomed} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      
+      {/* Blur overlay */}
+      <div 
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(4px)' }}
+      ></div>
+      
+      {/* Content layer */}
+      <div className="relative z-20 flex items-center justify-center h-full">
+        <div className="text-center">
+          <h0 className="text-xl  text-black font-bold text-black dark:text-white mb-4">SHAREEF JASIM</h0>
+          <p className="text-l text-gray-700 dark:text-gray-300">Designer and Technologist</p>
+        </div>
       </div>
-    </div>
-
-
-<br></br>
-<br></br>
-      <div className="sticky z-30 top-6"></div>
-
-
-
-      <div id="workSection" className="sticky z-30 top-6">
-        <FilterButton
-          categories={categories}
-          currentFilter={currentFilter}
-          onFilterChange={setCurrentFilter}
-        />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-18 lg:gap-x-36 gap-y-18 px-6 md:px-18 mt-18">
-        {filteredProjects.map((project) => (
-          <div key={project.title} className="object-center  object-contain">
-            <Card
-              targetUrl={`#${project.targetUrl}`}
-              mediaType={project.mediaType}
-              invertInDarkMode={project.invert || false}
-            >
-              {renderCardContent(project)}
-            </Card>
-            <h1 className="mt-6 text-center ">{project.title}</h1>
-            <p className="mt-1  text-center ">{project.description}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="h-36"></div>
-
-      <Footer />
     </div>
   );
 }

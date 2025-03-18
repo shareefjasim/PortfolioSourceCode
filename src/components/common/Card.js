@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
 const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
@@ -31,6 +31,23 @@ const Card = ({ children, targetUrl, mediaType, invertInDarkMode }) => {
     });
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!cardRef.current) return;
+      const offset = window.scrollY / 10;
+      gsap.to(cardRef.current, {
+        y: offset,
+        duration: 0.5,
+        ease: 'power1.out'
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
   return (
     <a 
       href={targetUrl} 

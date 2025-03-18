@@ -5,7 +5,6 @@
 
 
 
-
 body {
   cursor: none;
 }
@@ -13,7 +12,6 @@ body {
 body, a, a:hover {
   cursor: none !important;
 }
-
 
 /* Hide default scrollbar */
 body::-webkit-scrollbar {
@@ -23,4 +21,43 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom square scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #000;
+  border: none;
+  width: 8px;
+  height: 8px;
+}
+
+/* Square scrollbar thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0;
+}
+
+/* Dark mode scrollbar */
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #000 transparent;
+  padding-right: 4px; /* Add a little padding to prevent content from touching scrollbar */
+}
+
+/* For Firefox in dark mode */
+.dark .custom-scrollbar {
+  scrollbar-color: #fff transparent;
 }
