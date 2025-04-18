@@ -28,6 +28,8 @@ import "./App.css";
 import projects from "./components/projects/projectsData";
 import LoadingComponent from "./components/common/LoadingComponent.js";
 import CustomScrollbar from "./components/common/CustomScrollbar.js";
+import Menu from './components/Menu';
+
 
 
 function App() {
@@ -50,11 +52,11 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [showCursor, setShowCursor] = useState(false); // For CustomCursor
- 
-  
+
+
   useEffect(() => {
     // Simulate loading time for demonstration
-   
+
     // Separate timer for CustomCursor to appear after 2 seconds
     const cursorTimer = setTimeout(() => {
       setShowCursor(true);
@@ -62,100 +64,102 @@ function App() {
 
     // Cleanup function
     return () => {
-      
+
       clearTimeout(cursorTimer);
     };
   }, []);
-  
+
 
   return (
-    <div className="App dark:bg-black dark:text-white">
-      <Router>
+
+    <Router>
+      <div className="App dark:bg-black dark:text-white">
       {loading && <LoadingComponent />}
-        {showCursor && <CustomCursor />}
-            <Header
-              categories={categories}
-              currentFilter={currentFilter}
-              onFilterChange={setCurrentFilter}
-            />
-            <Routes>
-              <Route 
-              path="/" 
-              element={<HomePage />} 
-              /> 
-              <Route 
-              path="/V2" 
-              element={<HomePageV2 />} 
-              /> 
-               <Route 
-              path="/V3" 
-              element={<HomePageV3 />} 
-              /> 
-              <Route 
-              path="/V4" 
-              element={<HomePageV4 />} 
-              /> 
-              <Route 
-              path="/V5" 
-              element={<HomePageV5 />} 
-              /> 
-               <Route 
-              path="/workSection" 
-              element={<HomePage />} 
-              /> 
-              <Route 
-              path="/About" 
-              element={<AboutPage />} 
-              />
-              <Route 
-              path="/ECHO" 
-              element={<EchoPage />} 
-              />
-              <Route
-                path="/CowesWeekPavilion"
-                element={<CowesWeekPavilionPage />}
-              />
-              <Route 
-              path="/Droplets Clash" 
-              element={<DropletsClashPage />} 
-              />
-              <Route
-                path="GENxFacadeSolution"
-                element={<AlgorithmforLocalFacadeGeometriesPage />}
-              />
-              <Route
-                path="/FourSeasonsFacade"
-                element={<FourSeasonsFacadePage />}
-              />
-              <Route
-                path="/CliffYouthCenter"
-                element={<CliffYouthCenterPage />}
-              />
-              <Route
-                path="/VOXExporter"
-                element={<VOXExporterPage />}
-              />
-               <Route
-                path="/CTEP"
-                element={<CTEPPage />}
-              />
-               <Route
-                path="/SILTMiddelkerke"
-                element={<SILTMiddelkerkePage />}
-              />
-              <Route 
-              path="/APETools" 
-              element={<APEToolsPage />} 
-              />
-              <Route 
-              path="/WEAVE" 
-              element={<WEAVEPage />} 
-              />
-            </Routes>
-            <Footer />
-         
-      </Router>
-    </div>
+      {showCursor && <CustomCursor />}
+
+      <Header
+        categories={categories}
+        currentFilter={currentFilter}
+        onFilterChange={setCurrentFilter}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+        <Route
+          path="/V2"
+          element={<HomePageV2 />}
+        />
+        <Route
+          path="/V3"
+          element={<HomePageV3 />}
+        />
+        <Route
+          path="/V4"
+          element={<HomePageV4 />}
+        />
+        <Route
+          path="/V5"
+          element={<HomePageV5 />}
+        />
+        <Route
+          path="/workSection"
+          element={<HomePage />}
+        />
+        <Route
+          path="/About"
+          element={<AboutPage />}
+        />
+        <Route
+          path="/ECHO"
+          element={<EchoPage />}
+        />
+        <Route
+          path="/CowesWeekPavilion"
+          element={<CowesWeekPavilionPage />}
+        />
+        <Route
+          path="/Droplets Clash"
+          element={<DropletsClashPage />}
+        />
+        <Route
+          path="GENxFacadeSolution"
+          element={<AlgorithmforLocalFacadeGeometriesPage />}
+        />
+        <Route
+          path="/FourSeasonsFacade"
+          element={<FourSeasonsFacadePage />}
+        />
+        <Route
+          path="/CliffYouthCenter"
+          element={<CliffYouthCenterPage />}
+        />
+        <Route
+          path="/VOXExporter"
+          element={<VOXExporterPage />}
+        />
+        <Route
+          path="/CTEP"
+          element={<CTEPPage />}
+        />
+        <Route
+          path="/SILTMiddelkerke"
+          element={<SILTMiddelkerkePage />}
+        />
+        <Route
+          path="/APETools"
+          element={<APEToolsPage />}
+        />
+        <Route
+          path="/WEAVE"
+          element={<WEAVEPage />}
+        />
+      </Routes>
+      <Footer />
+      </div>
+    </Router>
+    
   );
 }
 

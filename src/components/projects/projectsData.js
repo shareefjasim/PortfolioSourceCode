@@ -6,6 +6,7 @@ const projects = [
     mediaSrc: "/projects/SILTMiddelkerke/images/AllOutput.png",
     targetUrl: "/SILTMiddelkerke",
     categories: ["COMP D"],
+    projectCardSize: "large",
   },
   {
     title: "Four Seasons Facade",
@@ -16,6 +17,8 @@ const projects = [
     targetUrl: "/FourSeasonsFacade",
     categories: ["ARCH", "COMP D"],
     invert: true,
+    projectCardSize: "medium",
+
   },
   {
     title: "ECHO",
@@ -24,6 +27,8 @@ const projects = [
     mediaSrc: "/projects/ECHO/images/Arch System-logo.png",
     targetUrl: "/ECHO",
     categories: ["ARCH"],
+    projectCardSize: "large",
+
   },
  
   {
@@ -33,6 +38,8 @@ const projects = [
     mediaSrc: "/projects/Cliff Youth Center/images/ArchSystemIcon.png",
     targetUrl: "/CliffYouthCenter",
     categories: ["ARCH"],
+    projectCardSize: "medium",
+
   },
  
   {
@@ -41,7 +48,9 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Cowes Week Pavilion/images/robot 2.png",
     targetUrl: "CowesWeekPavilion",
-    categories: ["ARCH", "COMP D"]
+    categories: ["ARCH", "COMP D"],
+    projectCardSize: "medium",
+
   },
   {
     title: "Algorithm for Local Facade Geometries",
@@ -51,6 +60,8 @@ const projects = [
     targetUrl: "/GENxFacadeSolution",
     categories: ["COMP D", "CODE"],
     invert: true,
+    projectCardSize: "large",
+
   },
 
   {
@@ -61,6 +72,8 @@ const projects = [
     targetUrl: "/WEAVE",
     categories: ["ARCH"],
     invert: true,
+    projectCardSize: "small",
+
   },
   {
     title: "Bubble Cube",
@@ -77,6 +90,8 @@ const projects = [
     allowPan: false,
     targetUrl: "/4d-droplets-clash",
     categories: ["COMP D"],
+    projectCardSize: "small",
+
   },
   {
     title: "CTEP",
@@ -85,6 +100,8 @@ const projects = [
     mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
     targetUrl: "/CTEP",
     categories: ["PRODUCT"],
+    projectCardSize: "large",
+
   },
   {
     title: "VOX Exporter",
@@ -93,6 +110,8 @@ const projects = [
     mediaSrc: "",
     targetUrl: "/VOXExporter",
     categories: ["COMP D", "CODE"],
+    projectCardSize: "large",
+
   }, 
   {
     title: "4D Droplets Clash",
@@ -102,6 +121,8 @@ const projects = [
     targetUrl: "/Droplets Clash",
     categories: ["OTHER"],
     invert: true,
+    projectCardSize: "medium",
+
   },
   {
     title: "APE Tools",
@@ -110,6 +131,8 @@ const projects = [
     mediaSrc: "/path/to/ape-tools-image.jpg",
     targetUrl: "/APETools",
     categories: ["COMP D", "CODE"],
+    projectCardSize: "small",
+
   },
  
  

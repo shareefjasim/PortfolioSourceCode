@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logoImage from '../../assets/icons/logoSJ 24th 3 2024.svg';
 import darkModeIcon from '../../assets/icons/darkmode.jpg';
 
@@ -9,7 +9,7 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
   const [darkMode, setDarkMode] = useState(() => {
     // Get the dark mode value from local storage or default to false
     const savedMode = localStorage.getItem('darkMode');
-    return savedMode === 'true' || false;
+    return savedMode === 'true' ;
   });
 
   useEffect(() => {
@@ -90,12 +90,19 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     </nav>
 
     {/* Large Screen Navigation */}
-    <nav className="hidden lg:flex space-x-6 fixed top-6 right-18">
+    <nav className="hidden lg:flex space-x-6 fixed top-6 ">
 
+   
+      <NavLink to="/"  className="fixed left-[96px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      SHAREEF JASIM
+        </NavLink>
     
-      <a href="/about" target="_blank" className="text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      <NavLink to="About" className="fixed right-[72px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
       ABOUT
-        </a>
+        </NavLink>
+        <NavLink to="/" className="fixed right-[172px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      WORK
+        </NavLink>
     </nav>
   </div>
 </header>
