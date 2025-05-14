@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      
       fontFamily: {
         OrbitronMedium: ['OrbitronMedium', 'sans-serif'],
         RobotoLight: ['RobotoLight', 'sans-serif'],
@@ -17,6 +18,10 @@ module.exports = {
       },
       maxHeight: {
         '1/5': '20%', // Adding a custom utility for max-height: 20%
+      },
+      spacing: {
+        // now you can use `mt-18` for 72px (4.5rem)
+        18: "4.5rem",
       },
     },
   },

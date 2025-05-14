@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ProjectSquare from "./ProjectSquare";
 
 function ProjectBoard({ projects, selectedCategory, onSquareClick }) {
@@ -23,42 +24,43 @@ function ProjectBoard({ projects, selectedCategory, onSquareClick }) {
     return () => window.removeEventListener("resize", calculateCellSize);
   }, []);
 
-  // Helper function to determine grid column span based on projectCardSize
-  const getColSpan = (size) => {
+  // Helpers for grid spans
+  const getColSpan = size => {
     switch (size) {
-      case 'large': return 'col-span-3 '; // 1/2 board width
-      case 'medium': return 'col-span-2 '; // 1/3 board width
-      case 'small': 
-      default: return 'col-span-1 '; // 1/6 board width
+      case 'large': return 'col-span-3';
+      case 'medium': return 'col-span-2';
+      default: return 'col-span-1';
     }
   };
-
-  // Helper function to determine grid row span based on projectCardSize
-  const getRowSpan = (size) => {
+  const getRowSpan = size => {
     switch (size) {
-      case 'large': return 'row-span-3 '; // Takes up 2 rows
-      case 'medium': return 'row-span-2 '; // Takes up 1.5 rows
-      case 'small': 
-      default: return 'row-span-1 '; // Takes up 1 row
+      case 'large': return 'row-span-3';
+      case 'medium': return 'row-span-2';
+      default: return 'row-span-1';
     }
   };
 
   return (
-    <div className="px-[168px] pt-[72px] pb-12 max-w-[1920px] mx-auto">
-      <div 
+    <div className="px-[216px] pt-18 pb-18 max-w-[1920px] mx-auto">
+      <motion.div
         ref={gridRef}
-        className="grid grid-cols-6 gap-[48px]" 
-        style={{ 
+        className="grid grid-cols-6 gap-[48px]"
+        style={{
           gridAutoFlow: 'dense',
-          gridAutoRows: `${cellSize}px` // Set row height to match column width
+          gridAutoRows: `${cellSize}px`
         }}
+        layout // animate layout changes
       >
-        {projects.map((project, index) => (
-          <div 
-            key={index}
-            className={`${getColSpan(project.projectCardSize)} ${getRowSpan(project.projectCardSize)} relative w-full`}
-          >
-            <div className="w-full h-full">
+        <AnimatePresence>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.targetUrl || index}
+              className={`${getColSpan(project.projectCardSize)} ${getRowSpan(project.projectCardSize)} relative w-full`}
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeInOut' } }}
+              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3, ease: 'easeInOut' } }}
+            >
               <ProjectSquare
                 project={project}
                 isSelected={
@@ -66,12 +68,11 @@ function ProjectBoard({ projects, selectedCategory, onSquareClick }) {
                   project.categories.includes(selectedCategory)
                 }
                 onClick={() => onSquareClick({ project, id: index })}
-                className="w-full h-full"
               />
-            </div>
-          </div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }

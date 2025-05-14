@@ -1,115 +1,138 @@
-import React, { useEffect, useState, useRef } from "react";
+// /src/components/common/CustomCursor.js
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useLocation } from "react-router-dom";
 
 const CustomCursor = () => {
-  const [isInside, setIsInside] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const [firstMove, setFirstMove] = useState(true); // Flag to track the first mouse movement
   const cursorRef = useRef(null);
+  const location = useLocation();
+  const prevLocation = useRef(location.pathname);
+
+  // Page transition: expand square to cover viewport, then shrink back
+  const pageTransition = () => {
+    const el = cursorRef.current;
+    if (!el) return;
+    const size = el.clientWidth;
+    const maxDim = Math.max(window.innerWidth, window.innerHeight);
+    const scaleFactor = (maxDim / size) * 2;
+
+    const tl = gsap.timeline();
+    // scale up
+    tl.to(el, {
+      scale: scaleFactor,
+      duration: 0.5,
+      ease: "cubic-bezier(0.4,0,0.2,1)",
+    });
+    // mid-animation: force black background
+    tl.call(() => {
+      el.style.backgroundColor = "#000";
+    }, null, 0.25);
+    // scale down
+    tl.to(el, {
+      scale: 1,
+      duration: 0.5,
+      ease: "cubic-bezier(0.4,0,0.2,1)",
+    });
+  };
 
   useEffect(() => {
-    const userAgent =
-      typeof window.navigator === "undefined" ? "" : navigator.userAgent;
-    const mobile = Boolean(
-      userAgent.match(
-        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-      )
-    );
+    // Detect mobile
+    const userAgent = typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+    const mobile = /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(userAgent);
     setIsMobile(mobile);
 
-    if (!mobile) {
-      // Set initial position of the cursor using GSAP
+    if (!mobile && cursorRef.current) {
+      // Center the cursor
       gsap.set(cursorRef.current, {
-        x: window.innerWidth / 2 - 12,
-        y: window.innerHeight / 2 - 12,
+        x: window.innerWidth / 2 - cursorRef.current.clientWidth / 2,
+        y: window.innerHeight / 2 - cursorRef.current.clientHeight / 2,
+        scale: 1,
+        opacity: 1,
       });
     }
   }, []);
 
   useEffect(() => {
-    if (isMobile) return; // Exit if on mobile
+    if (isMobile) return;
 
     const moveCursor = (e) => {
-      if (isInside) {
-        if (firstMove) {
-          // Apply a smooth transition for the first movement
-          gsap.to(cursorRef.current, {
-            x: e.clientX - cursorRef.current.clientWidth / 2,
-            y: e.clientY - cursorRef.current.clientHeight / 2,
-            duration: 0.5, // Longer duration for the first move
-            ease: "power2.out",
-          });
-          setFirstMove(false); // Set the flag to false after the first move
-        } else {
-          gsap.to(cursorRef.current, {
-            x: e.clientX - cursorRef.current.clientWidth / 2,
-            y: e.clientY - cursorRef.current.clientHeight / 2,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        }
-      }
-    };
-
-    const handleLinkHover = () => {
       gsap.to(cursorRef.current, {
-        scale: 1.8,
-        opacity: 0.5,
-        duration: 0.3,
-        ease: "power2.out",
+        x: e.clientX - cursorRef.current.clientWidth / 2,
+        y: e.clientY - cursorRef.current.clientHeight / 2,
+        duration: 0.2,
+        ease: "cubic-bezier(0.4,0,0.2,1)",
       });
     };
 
-    const handleLinkOut = () => {
+    // Hover scale + opacity
+    const handleHover = () => {
+      gsap.to(cursorRef.current, {
+        scale: 2,
+        opacity: 0.5,
+        duration: 0.3,
+        ease: "cubic-bezier(0.4,0,0.2,1)",
+      });
+    };
+    const handleLeave = () => {
       gsap.to(cursorRef.current, {
         scale: 1,
         opacity: 1,
         duration: 0.3,
-        ease: "power2.out",
+        ease: "cubic-bezier(0.4,0,0.2,1)",
       });
     };
 
-    const links = document.querySelectorAll(
-      'a, [role="button"], img.cursor-hover, .card, .menu-item'
-    );
-    links.forEach((link) => {
-      link.addEventListener("mouseover", handleLinkHover);
-      link.addEventListener("mouseout", handleLinkOut);
-      link.style.cursor = "none";
+    // Only attach click on project and about links
+    const selectors = '.project-link, .about-link';
+    const elems = document.querySelectorAll(selectors);
+
+    elems.forEach(el => {
+      el.addEventListener("click", () => {
+        pageTransition();
+      });
+      el.addEventListener("mouseover", handleHover);
+      el.addEventListener("mouseout", handleLeave);
+      el.style.cursor = "none";
     });
 
     window.addEventListener("mousemove", moveCursor);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-      links.forEach((link) => {
-        link.removeEventListener("mouseover", handleLinkHover);
-        link.removeEventListener("mouseout", handleLinkOut);
-        link.style.cursor = "";
+      elems.forEach(el => {
+        el.removeEventListener("click", pageTransition);
+        el.removeEventListener("mouseover", handleHover);
+        el.removeEventListener("mouseout", handleLeave);
+        el.style.cursor = "";
       });
     };
-  }, [isInside, isMobile, firstMove]);
+  }, [isMobile]);
 
-  const size = 24;
+  // Trigger on route change, only if navigating to project/about pages
+  useEffect(() => {
+    const path = location.pathname;
+    if (prevLocation.current !== path && (path.startsWith("/project") || path === "/About")) {
+      pageTransition();
+    }
+    prevLocation.current = path;
+  }, [location]);
 
-  if (isMobile) return null; // Don't render the cursor for mobile devices
+  if (isMobile) return null;
 
   return (
     <div
       ref={cursorRef}
-      className="custom-cursor bg-black dark:bg-white"
+      className="custom-cursor bg-black dark:bg-white rounded-none"
       style={{
         position: "fixed",
-        top: 0, // Center vertically
-        left: 0, // Center horizontally
-        width: `${size}px`,
-        height: `${size}px`,
-        transform: "translate3d(0, 0, 0)", // Use translate3d for better performance
-        willChange: 'transform', // for hardware acceleration
+        width: "24px",
+        height: "24px",
         pointerEvents: "none",
         zIndex: 9999,
+        willChange: "transform",
       }}
-    ></div>
+    />
   );
 };
 

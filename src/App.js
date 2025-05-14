@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, useNavigate  } from "react-router-dom";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import CustomCursor from "./components/common/CustomCursor.js";
 
 import HomePage from "./pages/HomePage";
-import HomePageV2 from "./pages/HomePageV2";
-import HomePageV3 from "./pages/HomePageV3";
-import HomePageV4 from "./pages/HomePageV4";
-import HomePageV5 from "./pages/HomePageV5";
 
 import AboutPage from "./pages/About.js";
 import EchoPage from "./pages/ECHO.js";
@@ -28,7 +24,9 @@ import "./App.css";
 import projects from "./components/projects/projectsData";
 import LoadingComponent from "./components/common/LoadingComponent.js";
 import CustomScrollbar from "./components/common/CustomScrollbar.js";
-import Menu from './components/Menu';
+import PageTransition from './components/common/PageTransition';
+import ScrollToTop from './components/common/ScrollToTop';
+
 
 
 
@@ -73,6 +71,8 @@ function App() {
   return (
 
     <Router>
+            <ScrollToTop />
+
       <div className="App dark:bg-black dark:text-white">
       {loading && <LoadingComponent />}
       {showCursor && <CustomCursor />}
@@ -86,22 +86,6 @@ function App() {
         <Route
           path="/"
           element={<HomePage />}
-        />
-        <Route
-          path="/V2"
-          element={<HomePageV2 />}
-        />
-        <Route
-          path="/V3"
-          element={<HomePageV3 />}
-        />
-        <Route
-          path="/V4"
-          element={<HomePageV4 />}
-        />
-        <Route
-          path="/V5"
-          element={<HomePageV5 />}
         />
         <Route
           path="/workSection"

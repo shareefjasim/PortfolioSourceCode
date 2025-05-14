@@ -5,7 +5,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/SILTMiddelkerke/images/AllOutput.png",
     targetUrl: "/SILTMiddelkerke",
-    categories: ["COMP D"],
+    categories: ["Computational Design"],
     projectCardSize: "large",
   },
   {
@@ -15,7 +15,7 @@ const projects = [
     mediaSrc:
       "/projects/Four Seasons Facade System/images/diagram 11-Photoshopped.png",
     targetUrl: "/FourSeasonsFacade",
-    categories: ["ARCH", "COMP D"],
+    categories: ["Architecture", "Computational Design"],
     invert: true,
     projectCardSize: "medium",
 
@@ -26,7 +26,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/ECHO/images/Arch System-logo.png",
     targetUrl: "/ECHO",
-    categories: ["ARCH"],
+    categories: ["Architecture"],
     projectCardSize: "large",
 
   },
@@ -37,7 +37,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Cliff Youth Center/images/ArchSystemIcon.png",
     targetUrl: "/CliffYouthCenter",
-    categories: ["ARCH"],
+    categories: ["Architecture"],
     projectCardSize: "medium",
 
   },
@@ -48,7 +48,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Cowes Week Pavilion/images/robot 2.png",
     targetUrl: "CowesWeekPavilion",
-    categories: ["ARCH", "COMP D"],
+    categories: ["Architecture", "Computational Design"],
     projectCardSize: "medium",
 
   },
@@ -58,9 +58,9 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/GENx Facade Solution/images/combined.jpg",
     targetUrl: "/GENxFacadeSolution",
-    categories: ["COMP D", "CODE"],
+    categories: ["Computational Design", "Software"],
     invert: true,
-    projectCardSize: "large",
+    projectCardSize: "medium",
 
   },
 
@@ -70,9 +70,9 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/WEAVE/images/exploded.jpg",
     targetUrl: "/WEAVE",
-    categories: ["ARCH"],
+    categories: ["Architecture"],
     invert: true,
-    projectCardSize: "small",
+    projectCardSize: "medium",
 
   },
   {
@@ -89,8 +89,8 @@ const projects = [
     directionalLightIntensity: 1,
     allowPan: false,
     targetUrl: "/4d-droplets-clash",
-    categories: ["COMP D"],
-    projectCardSize: "small",
+    categories: ["Computational Design"],
+    projectCardSize: "medium",
 
   },
   {
@@ -99,7 +99,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/CTEP/images/ViewCapture20211227_131540.png",
     targetUrl: "/CTEP",
-    categories: ["PRODUCT"],
+    categories: ["Product"],
     projectCardSize: "large",
 
   },
@@ -109,8 +109,8 @@ const projects = [
     mediaType: "image",
     mediaSrc: "",
     targetUrl: "/VOXExporter",
-    categories: ["COMP D", "CODE"],
-    projectCardSize: "large",
+    categories: ["Computational Design", "Software"],
+    projectCardSize: "medium",
 
   }, 
   {
@@ -119,7 +119,7 @@ const projects = [
     mediaType: "image",
     mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
     targetUrl: "/Droplets Clash",
-    categories: ["OTHER"],
+    categories: ["Miscellaneous"],
     invert: true,
     projectCardSize: "medium",
 
@@ -128,10 +128,10 @@ const projects = [
     title: "APE Tools",
     description: "Description of Ape Tools",
     mediaType: "image",
-    mediaSrc: "/path/to/ape-tools-image.jpg",
+    mediaSrc: "/projects/APETools/images/APE logo.PNG",
     targetUrl: "/APETools",
-    categories: ["COMP D", "CODE"],
-    projectCardSize: "small",
+    categories: ["Computational Design", "Software"],
+    projectCardSize: "medium",
 
   },
  

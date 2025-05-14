@@ -93,14 +93,14 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     <nav className="hidden lg:flex space-x-6 fixed top-6 ">
 
    
-      <NavLink to="/"  className="fixed left-[96px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      <NavLink to="/"  className="fixed left-[96px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
       SHAREEF JASIM
         </NavLink>
     
-      <NavLink to="About" className="fixed right-[72px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+      <NavLink to="About" className="fixed right-[72px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
       ABOUT
         </NavLink>
-        <NavLink to="/" className="fixed right-[172px] text-black dark:text-white px-1 text-[18px] leading-6 h-6">
+        <NavLink to="/" className="fixed right-[152px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
       WORK
         </NavLink>
     </nav>

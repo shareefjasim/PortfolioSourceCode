@@ -2,6 +2,11 @@ To build and deploy the website:
 - cd scripts
 - .\deploy.ps1
 
+
+Feedback 
+2 sizes for the projects are enough 
+
+
 TODO:
 - Page Transition
 - Cards redesign for better interactivity no glitch and swing on scroll
