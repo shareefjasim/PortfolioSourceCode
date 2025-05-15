@@ -61,14 +61,3 @@ body {
 .dark .custom-scrollbar {
   scrollbar-color: #fff transparent;
 }
-
-/* Custom cursor styles */
-body.has-custom-cursor,
-body.has-custom-cursor *:not(.cursor-default) {
-  cursor: none !important;
-}
-
-/* For any element you want to use the default cursor */
-.cursor-default, .cursor-default * {
-  cursor: default !important;
-}

@@ -8,9 +8,8 @@ const CustomCursor = () => {
   const cursorRef = useRef(null);
   const location = useLocation();
   const prevLocation = useRef(location.pathname);
+  const isHovering = useRef(false);
 
-
-  
   // Function to apply cursor behavior to elements
   const applyCustomCursorBehavior = () => {
     if (isMobile) return;
@@ -23,6 +22,7 @@ const CustomCursor = () => {
       .project-link, .about-link,
       .category-button,
       .nav-item, .menu-item,
+      .header-link,
       [tabindex="0"]
     `;
     
@@ -30,6 +30,7 @@ const CustomCursor = () => {
     document.querySelectorAll(selectors).forEach(el => {
       el.removeEventListener("mouseover", handleHover);
       el.removeEventListener("mouseout", handleLeave);
+      el.removeEventListener("click", handleClick);
     });
     
     // Add new event listeners
@@ -42,11 +43,18 @@ const CustomCursor = () => {
       el.addEventListener("mouseout", handleLeave);
       el.addEventListener("click", handleClick);
       el.style.cursor = "none";
+      
+      // Remove any inline transitions that might conflict
+      el.style.transition = null;
     });
   };
   
-  // Event handlers
+  // Event handlers - standardized for all elements
   const handleHover = () => {
+    if (isHovering.current) return; // Prevent multiple animations
+    isHovering.current = true;
+    
+    gsap.killTweensOf(cursorRef.current); // Stop any in-progress animations
     gsap.to(cursorRef.current, {
       scale: 2,
       opacity: 0.5,
@@ -56,6 +64,9 @@ const CustomCursor = () => {
   };
   
   const handleLeave = () => {
+    isHovering.current = false;
+    
+    gsap.killTweensOf(cursorRef.current); // Stop any in-progress animations
     gsap.to(cursorRef.current, {
       scale: 1,
       opacity: 1,
@@ -64,19 +75,16 @@ const CustomCursor = () => {
     });
   };
   
-  // Modify the handleClick function to reset cursor state
-  const handleClick = (e) => {
-    // Reset cursor to normal state when clicking any link
+  const handleClick = () => {
+    gsap.killTweensOf(cursorRef.current); // Stop any in-progress animations
     gsap.to(cursorRef.current, {
       scale: 1,
       opacity: 1,
       duration: 0.3,
       ease: "cubic-bezier(0.4,0,0.2,1)",
     });
-    
- 
+    isHovering.current = false;
   };
-
   
   const moveCursor = (e) => {
     gsap.to(cursorRef.current, {
@@ -84,6 +92,7 @@ const CustomCursor = () => {
       y: e.clientY - cursorRef.current.clientHeight / 2,
       duration: 0.2,
       ease: "cubic-bezier(0.4,0,0.2,1)",
+      overwrite: "auto"
     });
   };
 
@@ -94,34 +103,13 @@ const CustomCursor = () => {
     setIsMobile(mobile);
 
     if (!mobile) {
-      // Add class to body when custom cursor is active
       document.body.classList.add('has-custom-cursor');
-      
-      // Center the cursor
-      if (cursorRef.current) {
-        gsap.set(cursorRef.current, {
-          x: window.innerWidth / 2 - cursorRef.current.clientWidth / 2,
-          y: window.innerHeight / 2 - cursorRef.current.clientHeight / 2,
-          scale: 1,
-          opacity: 1,
-        });
-      }
-      
-      // Set up mouse move listener
       window.addEventListener("mousemove", moveCursor);
-      
-      // Initial application
       applyCustomCursorBehavior();
       
       // Set up mutation observer to catch dynamically added elements
-      const observer = new MutationObserver((mutations) => {
-        applyCustomCursorBehavior();
-      });
-      
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
+      const observer = new MutationObserver(applyCustomCursorBehavior);
+      observer.observe(document.body, { childList: true, subtree: true });
       
       return () => {
         window.removeEventListener("mousemove", moveCursor);
@@ -131,22 +119,21 @@ const CustomCursor = () => {
     }
   }, [isMobile]);
 
-  // Handle route changes
+  // Reset cursor on route changes
   useEffect(() => {
     if (location.pathname !== prevLocation.current) {
       prevLocation.current = location.pathname;
+      isHovering.current = false;
       
-      // Reset cursor state when navigation happens
       if (cursorRef.current) {
+        gsap.killTweensOf(cursorRef.current);
         gsap.to(cursorRef.current, {
           scale: 1,
           opacity: 1,
-          duration: 0.3,
-          ease: "cubic-bezier(0.4,0,0.2,1)",
+          duration: 0.3
         });
       }
       
-      // Re-apply cursor behavior after navigation
       setTimeout(applyCustomCursorBehavior, 300);
     }
   }, [location]);
