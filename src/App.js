@@ -26,6 +26,8 @@ import LoadingComponent from "./components/common/LoadingComponent.js";
 import CustomScrollbar from "./components/common/CustomScrollbar.js";
 import PageTransition from './components/common/PageTransition';
 import ScrollToTop from './components/common/ScrollToTop';
+import GoToTopButton from "./components/common/GoToTopButton";
+
 
 
 
@@ -72,6 +74,8 @@ function App() {
 
     <Router>
             <ScrollToTop />
+            <GoToTopButton />
+
 
       <div className="App dark:bg-black dark:text-white">
       {loading && <LoadingComponent />}
@@ -142,6 +146,8 @@ function App() {
       </Routes>
       <Footer />
       </div>
+      {showCursor && <CustomCursor />} {/* Make sure this is included */}
+
     </Router>
     
   );

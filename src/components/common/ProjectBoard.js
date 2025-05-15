@@ -40,6 +40,38 @@ function ProjectBoard({ projects, selectedCategory, onSquareClick }) {
     }
   };
 
+  // Animation variants for project cards
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.7,  // Start at 70% scale (-30% from original)
+    },
+    visible: index => ({ 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 0.6,
+        ease: [0.43, 0.13, 0.23, 0.96], // Custom easing for a nice elastic feel
+        delay: index * 0.05, // Stagger effect based on index
+      } 
+    }),
+    hover: {
+      scale: 1.03, // Slight scale up on hover
+      transition: { 
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.7,
+      transition: { 
+        duration: 0.4, 
+        ease: "easeInOut" 
+      } 
+    }
+  };
+
   return (
     <div className="px-[216px] pt-18 pb-18 max-w-[1920px] mx-auto">
       <motion.div
@@ -51,15 +83,18 @@ function ProjectBoard({ projects, selectedCategory, onSquareClick }) {
         }}
         layout // animate layout changes
       >
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {projects.map((project, index) => (
             <motion.div
               key={project.targetUrl || index}
               className={`${getColSpan(project.projectCardSize)} ${getRowSpan(project.projectCardSize)} relative w-full`}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeInOut' } }}
-              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3, ease: 'easeInOut' } }}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              whileHover="hover"
+              custom={index} // Passed to the variants for staggered animations
             >
               <ProjectSquare
                 project={project}

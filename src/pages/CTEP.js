@@ -1,6 +1,8 @@
 // CTEP.js
 import React , { useEffect } from 'react';
 import CustomizableCarousel from '../components/common/CustomizableCarousel';
+import BackToProjects from '../components/common/BackToProjects';
+
 
 const CTEPPage = () => {
   useEffect(() => {

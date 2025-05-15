@@ -34,7 +34,7 @@ function CategoryFilter({ categories, activeCategory, onSelectCategory }) {
             onClick={() => onSelectCategory(cat)}
             className={`
               text-sm transition-all duration-300
-              hover:opacity-100
+              hover:opacity-100 cursor-none
               ${cat === activeCategory ? 
                 'font-bold opacity-100' : 
                 'font-normal opacity-60 hover:opacity-80'}

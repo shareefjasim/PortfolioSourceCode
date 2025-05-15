@@ -48,13 +48,13 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     <img 
       src={darkModeIcon} 
       alt="Toggle Dark Mode" 
-      className="cursor-hover fixed top-6 right-18 lg:right-6 z-50  w-6 h-6  dark:invert transition-colors duration-500 "
+      className="cursor-hover fixed top-6 right-18 lg:right-6 z-50 w-6 h-6 dark:invert transition-colors duration-500 clickable cursor-none"
       onClick={toggleDarkMode}
     />
     {/* Mobile Menu Button */}
     <button 
       onClick={toggleMenu} 
-      className="lg:hidden fixed top-6 right-6 z-50"
+      className="lg:hidden fixed top-6 right-6 z-50 clickable cursor-none"
     >
       <div className="bg-black dark:bg-white w-6 h-6"></div>
     </button>
@@ -67,7 +67,7 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
 
 
 
-      <Link to="/About" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[290px] px-3 h-6 leading-6 text-2xl ">
+      <Link to="/About" onClick={closeMenu} className="bg-black dark:bg-white text-white dark:text-black text-center min-w-[290px] px-3 h-6 leading-6 text-2xl cursor-none clickable">
         ABOUT
       </Link>
    
@@ -78,7 +78,7 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
         <a
           key={category}
           href="#"
-          className="bg-black text-white dark:bg-white dark:text-black px-3 h-6 leading-6 text-center text-xl min-w-[290px]"
+          className="bg-black text-white dark:bg-white dark:text-black px-3 h-6 leading-6 text-center text-xl min-w-[290px] cursor-none clickable"
           onClick={() => { onFilterChange(category); closeMenu(); }}
         >
           {category}
@@ -93,14 +93,14 @@ const Header = ({ categories, currentFilter, onFilterChange }) => {
     <nav className="hidden lg:flex space-x-6 fixed top-6 ">
 
    
-      <NavLink to="/"  className="fixed left-[96px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
+      <NavLink to="/"  className="fixed left-[96px] text-black dark:text-white px-0 text-[14px] leading-6 h-6 cursor-none clickable">
       SHAREEF JASIM
         </NavLink>
     
-      <NavLink to="About" className="fixed right-[72px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
+      <NavLink to="About" className="fixed right-[72px] text-black dark:text-white px-0 text-[14px] leading-6 h-6 cursor-none clickable">
       ABOUT
         </NavLink>
-        <NavLink to="/" className="fixed right-[152px] text-black dark:text-white px-0 text-[14px] leading-6 h-6">
+        <NavLink to="/" className="fixed right-[152px] text-black dark:text-white px-0 text-[14px] leading-6 h-6 cursor-none clickable">
       WORK
         </NavLink>
     </nav>

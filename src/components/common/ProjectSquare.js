@@ -89,8 +89,10 @@ const ProjectSquare = ({ project, isSelected, onClick }) => {
     <div
       onClick={handleClick}
       onContextMenu={handleContextMenu}
-      className={`relative w-full aspect-square flex items-center justify-center transition-transform duration-300 ease-in-out  border bg-gray ${
-        isSelected ? "border-bg-gray" : ""
+      className={`relative w-full aspect-square flex items-center justify-center transition-transform duration-300 ease-in-out  border bg-gray 
+        cursor-none project-link
+        ${
+        isSelected ? "border-bg-red" : ""
       }`}
     >
       {renderMedia()}
