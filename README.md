@@ -1,93 +1,176 @@
-To build and deploy the website:
-- cd scripts
-- .\deploy.ps1
+# Portfolio Webapp for Multiple Disciplines
 
+A highly interactive portfolio web application showcasing work across multiple disciplines—3D visualization, data-driven UIs, animations, and more.
 
-Feedback 
-2 sizes for the projects are enough 
+Built with **React** and **Tailwind CSS**, plus a collection of specialized libraries for 3D, animations, testing, data visualization, routing, and performance monitoring.
 
+---
 
-TODO:
-- Page Transition
-- Cards redesign for better interactivity no glitch and swing on scroll
-- Adjust Scrollbar more for phone 
-- Edit the Black Squares and icons to have the modern translucent glass material like feel using this (https://www.epicweb.dev/tips creating-glassmorphism-effects-with-tailwind-css)
-- you can also edit this color to be dynamically changing between some soft colors that would sute both light and dark mode 
+## Table of Contents
 
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Deployment](#deployment)
+- [Feedback & Design Notes](#feedback--design-notes)
+- [TODO](#todo)
+- [Project Materials](#project-materials)
+- [Dependencies](#dependencies)
+- [Dev Dependencies](#dev-dependencies)
 
+---
 
-Projects needed materials:
--ECHO Renders with twinmotion
+## Features
 
+- **Responsive layouts** for desktop & mobile
+- **3D scenes** powered by [react-three-fiber](https://github.com/pmndrs/react-three-fiber) & [@react-three/drei]
+- **Smooth animations** via Framer Motion & GSAP
+- **Interactive force‐directed graph** (d3‐force)
+- **Code‐split & optimized** for best performance
+- **Light & dark mode** support with dynamic glassmorphism accents
 
+---
 
-# Getting Started with Create React App
+## Tech Stack
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- **Framework**: React (v18.3.1)
+- **Styling**: Tailwind CSS (v3.3.5) + PostCSS + Autoprefixer
+- **3D**: three.js ecosystem (`three`, `react-three-fiber`, `@react-three/drei`, postprocessing)
+- **Animations**: framer-motion, gsap
+- **Routing**: react-router-dom (v7.5.1)
+- **Testing**: @testing-library/react, jest-dom, user-event
+- **Performance**: web-vitals
+- **Data visualization**: d3-force
+
+---
+
+## Getting Started
+
+### 1. Clone the repo
+```bash
+git clone <your-repo-url>
+cd portfolio
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run in development mode
+```bash
+npm start
+```
+
+Opens http://localhost:3000 and auto-reloads on changes.
+
+---
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+| Command | Description |
+|---------|-------------|
+| `npm start` | Starts dev server with HMR |
+| `npm test` | Launches test runner in watch mode |
+| `npm run build` | Bundles and optimizes app for production into build/ folder |
+| `npm run eject` | One-way: ejects Create React App config for full customization |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Deployment
 
-### `npm test`
+To build and deploy your portfolio website:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Generate static build
+```bash
+npm run build
+```
 
-### `npm run build`
+### 2. Deploy
+```powershell
+cd scripts
+.\deploy.ps1
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This powershell script syncs the build/ folder to your hosting (e.g. GitHub Pages).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Feedback & Design Notes
 
-### `npm run eject`
+- **Project card sizes**: Two distinct sizes cover all use-cases
+- **Glassmorphism**: Replace "black squares" and icons with semi-transparent, frosted-glass panels
+- **Dynamic accent colors**: Cycle between soft palettes that look great in both light & dark modes
+- **Scrollbar**: Tweak thickness & thumb-track styling for mobile UX
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## TODO
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 🌀 Page transitions (fade/slide between routes)
+- 🎴 Card redesign: eliminate scroll-jank & swinging motion
+- 📱 Scrollbar adjustments: improve touch targets on phones
+- 🖼️ Glassmorphism on icons & panels
+- 🎨 Dynamic color theming for both modes
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Project Materials
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ECHO renders created in Twinmotion
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```json
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "dependencies": {
+    "@react-three/drei": "^8.20.2",
+    "@react-three/fiber": "^8.18.0",
+    "@react-three/postprocessing": "^2.5.2",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "d3-force": "^3.0.0",
+    "framer-motion": "^12.7.4",
+    "gsap": "^3.12.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.5.1",
+    "react-scripts": "^5.0.1",
+    "react-three-fiber": "^6.0.13",
+    "three": "^0.152.2",
+    "three-addons": "^1.2.0",
+    "three-gltf-loader": "^1.111.0",
+    "three-obj-loader": "^1.1.3",
+    "web-vitals": "^2.1.4"
+  }
+}
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Dev Dependencies
 
-### Making a Progressive Web App
+```json
+{
+  "devDependencies": {
+    "@types/three": "^0.173.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**⚠️ COPYRIGHT NOTICE**: This documentation and associated project are proprietary and confidential. No license is granted for use, reproduction, distribution, or modification of this content for any purpose. All rights reserved.
