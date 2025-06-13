@@ -48,4 +48,46 @@ const projects = [
     targetUrl: "/APETools",
     categories: ["Computational Design", "Software Development"],
   },
+
+  {
+    title: "VOX Exporter",
+    description: "Direct link to MagicaVoxel through the APE Plugin",
+    mediaType: "image",
+    mediaSrc: "",
+    targetUrl: "/VOXExporter",
+    categories: ["Computational Design", "Software"],
+    projectCardSize: "medium",
+
+  }, 
+  {
+    title: "4D Droplets Clash",
+    description: "Basic Abstraction Design",
+    mediaType: "image",
+    mediaSrc: "/projects/Droplets Clash/images/mix 1t.jpg",
+    targetUrl: "/Droplets Clash",
+    categories: ["Miscellaneous"],
+    invert: true,
+    projectCardSize: "medium",
+
+  },
+
+
+  {
+    title: "Bubble Cube",
+    description: "Basic Abstraction Design",
+    mediaType: "3dmodel",
+    mediaSrc: "/MYFILE.glb",
+    cameraType: "perspective",
+    cameraPosition: [250, 250, 250],
+    cameraLookAt: [0, 0, 0],
+    ambientIntensity: 400,
+    directionalLightPosition: [5, 10, 5],
+    directionalLightTarget: [0, 0, 0],
+    directionalLightIntensity: 1,
+    allowPan: false,
+    targetUrl: "/4d-droplets-clash",
+    categories: ["Computational Design"],
+    projectCardSize: "medium",
+
+  },
 ]
