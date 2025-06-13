@@ -1,21 +1,33 @@
 # Define the paths
-$BUILD_DIR = "D:\portfolio\WebsitePortfolio\Website\build" # Update this path
-$DEPLOY_DIR = "D:\portfolio\WebsitePortfolio\Website\build_deploy\Portfolio" # Update this path
+$SOURCE_DIR = "/Users/ShareefJasim/Portfolio/PortfolioSourceCode"
+$BUILD_DIR = "/Users/ShareefJasim/Portfolio/PortfolioSourceCode/build"  # Assuming build folder is in source
+$DEPLOY_DIR = "/Users/ShareefJasim/Portfolio/PortfolioPublicCode"
 
 # Step 1: Build the project (if required)
 Write-Host "Building the project..."
-Set-Location $BUILD_DIR
+Set-Location $SOURCE_DIR
 npm run build
 
-# Step 2: Copy the build artifacts to the deployment repository
+# Step 2: Navigate to deployment repository and pull latest changes
+Write-Host "Navigating to deployment repository..."
+Set-Location $DEPLOY_DIR
+
+Write-Host "Pulling latest changes from deployment repository..."
+git pull origin main
+
+# Step 3: Clear existing files (except .git folder and important files)
+Write-Host "Clearing existing deployment files..."
+Get-ChildItem -Path $DEPLOY_DIR -Exclude ".git", ".gitignore", "README.md" | Remove-Item -Recurse -Force
+
+# Step 4: Copy the build artifacts to the deployment repository
 Write-Host "Copying build artifacts to the deployment repository..."
 Copy-Item -Path "$BUILD_DIR\*" -Destination $DEPLOY_DIR -Recurse -Force
 
-# Step 3: Commit and push the changes to the deployment repository
+# Step 5: Commit and push the changes to the deployment repository
 Write-Host "Deploying the changes..."
 Set-Location $DEPLOY_DIR
 git add .
-git commit -m "Deploy updated build"
+git commit -m "Deploy updated build - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
 git push origin main
 
 Write-Host "Deployment successful!"
